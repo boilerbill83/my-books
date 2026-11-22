@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-11-22T12:19:18.970Z",
+    "generatedAt": "2026-11-22T17:29:37.664Z",
     "count": 494,
     "capPerType": 200
   },
@@ -4332,16 +4332,6 @@
       "source": "bill-manual"
     },
     {
-      "type": "show",
-      "titleKey": "show:95556",
-      "ids": {
-        "tmdb": 95556
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
       "type": "movie",
       "titleKey": "movie:387426",
       "ids": {
@@ -4405,28 +4395,6 @@
       "year": 2018,
       "source": "genre-explore",
       "discoveredVia": "Comedy"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:675353",
-      "ids": {
-        "tmdb": 675353
-      },
-      "title": "Sonic the Hedgehog 2",
-      "year": 2022,
-      "source": "genre-explore",
-      "discoveredVia": "Adventure"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:810171",
-      "ids": {
-        "tmdb": 810171
-      },
-      "title": "The Valet",
-      "year": 2022,
-      "source": "genre-explore",
-      "discoveredVia": "Romance"
     },
     {
       "type": "movie",
@@ -5113,17 +5081,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:114479",
-      "ids": {
-        "tmdb": 114479
-      },
-      "title": "The Acolyte",
-      "year": 2024,
-      "source": "genre-explore",
-      "discoveredVia": "War & Politics"
-    },
-    {
-      "type": "show",
       "titleKey": "show:284605",
       "ids": {
         "tmdb": 284605
@@ -5154,15 +5111,58 @@
       "discoveredVia": "Thriller"
     },
     {
-      "type": "movie",
-      "titleKey": "movie:550231",
+      "type": "show",
+      "titleKey": "show:211288",
       "ids": {
-        "tmdb": 550231
+        "tmdb": 211288
       },
-      "title": "The Secret: Dare to Dream",
-      "year": 2020,
+      "title": null,
+      "year": null,
+      "citedBy": 5
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1307373",
+      "ids": {
+        "tmdb": 1307373
+      },
+      "title": "Wasteman",
+      "year": 2026,
       "source": "genre-explore",
-      "discoveredVia": "Romance"
+      "discoveredVia": "Thriller"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1300968",
+      "ids": {
+        "tmdb": 1300968
+      },
+      "title": "The Hunger Games: Sunrise on the Reaping",
+      "year": 2026,
+      "source": "genre-explore",
+      "discoveredVia": "Action"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:472674",
+      "ids": {
+        "tmdb": 472674
+      },
+      "title": "The Goldfinch",
+      "year": 2019,
+      "source": "genre-explore",
+      "discoveredVia": "Mystery"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:131651",
+      "ids": {
+        "tmdb": 131651
+      },
+      "title": "Turning Point: 9/11 and the War on Terror",
+      "year": 2021,
+      "source": "genre-explore",
+      "discoveredVia": "War & Politics"
     }
   ]
 }

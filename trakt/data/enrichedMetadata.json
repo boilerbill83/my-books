@@ -578877,5 +578877,3340 @@
   "year": 2022,
   "type": "movie",
   "fetchedAt": "2026-11-15"
+ },
+ "movie:641530": {
+  "genres": [
+   "Action",
+   "Drama"
+  ],
+  "overview": "A-Hu, who is born into a small family during an economic crisis. His mother works at recycling with her son A-Hu and his brothers until A-Hu leaves home. Although he has left, he keeps an eye on his mother in order to protect her from a group of people who bully her. During a fight with the bullies, he accidentally kills one and goes to jail. After being released from prison Ahu and his brother join forces with their brother in a gang.",
+  "keywords": [
+   "based on true story",
+   "gang"
+  ],
+  "originalLanguage": "zh",
+  "imdbId": null,
+  "voteAverage": 0.0,
+  "voteCount": 0,
+  "popularity": 0.4292,
+  "posterPath": "/6tgxs8NN1o23By8oNtzXK0Ybn3r.jpg",
+  "similarToIds": [
+   398,
+   1040115,
+   1623963,
+   454527,
+   266503,
+   642041,
+   266856,
+   454652,
+   454664,
+   642434,
+   458131,
+   2567,
+   2604,
+   2669,
+   270136,
+   458441,
+   457799,
+   2436,
+   2253,
+   270005
+  ],
+  "recommendedIds": [
+   14842,
+   1636891,
+   40081,
+   1292415,
+   658009,
+   741067,
+   649392,
+   15797,
+   41377,
+   64363,
+   25006,
+   592643,
+   12888,
+   253154,
+   608813,
+   1024627,
+   16136,
+   48942,
+   14673,
+   921360
+  ],
+  "productionCompanies": [],
+  "topCast": [
+   "Lee Shao Xiang",
+   "Steven Sun",
+   "Ryan Kou",
+   "Lilu Suan Wang",
+   "L\u00fc Hsueh-feng"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1432946,
+    "name": "Lee Shao Xiang",
+    "gender": 2
+   },
+   {
+    "id": 2349858,
+    "name": "Steven Sun",
+    "gender": 2
+   },
+   {
+    "id": 2886401,
+    "name": "Ryan Kou",
+    "gender": 2
+   },
+   {
+    "id": 2886402,
+    "name": "Lilu Suan Wang",
+    "gender": 1
+   },
+   {
+    "id": 1630056,
+    "name": "L\u00fc Hsueh-feng",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2019-05-03",
+  "runtime": 100,
+  "director": null,
+  "directors": [],
+  "belongsToCollection": null,
+  "creatorCredits": [],
+  "title": "A-Hu",
+  "year": 2019,
+  "type": "movie",
+  "fetchedAt": "2026-11-22"
+ },
+ "movie:1701": {
+  "genres": [
+   "Action",
+   "Thriller",
+   "Crime"
+  ],
+  "overview": "Newly-paroled former US Army ranger Cameron Poe is headed back to his wife, but must fly home aboard a prison transport flight dubbed \"Jailbird\" taking the \u201cworst of the worst\u201d prisoners, a group described as \u201cpure predators\u201d, to a new super-prison. Poe faces impossible odds when the transport plane is skyjacked mid-flight by the most vicious criminals in the country led by the mastermind \u2014 genius serial killer Cyrus \"The Virus\" Grissom, and backed by black militant Diamond Dog and psychopath Billy Bedlam.",
+  "keywords": [
+   "undercover",
+   "ambush",
+   "war veteran",
+   "psychopath",
+   "bravery",
+   "mexican standoff",
+   "sandstorm",
+   "hijacking",
+   "prison guard",
+   "u.s. marshal",
+   "serial killer",
+   "shootout",
+   "brutality",
+   "convict",
+   "war hero"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0118880",
+  "voteAverage": 6.788,
+  "voteCount": 4964,
+  "popularity": 12.4945,
+  "posterPath": "/kOKjgrEzGOP92rVQ6srA9jtp60l.jpg",
+  "similarToIds": [
+   40446,
+   40451,
+   40345,
+   40350,
+   40363,
+   40377,
+   40507,
+   299796,
+   40022,
+   114599,
+   115605,
+   744452,
+   743563,
+   113337,
+   1352581,
+   361488,
+   105819,
+   105836,
+   105840,
+   738652
+  ],
+  "recommendedIds": [
+   11808,
+   754,
+   49021,
+   16113,
+   1414413,
+   31671,
+   9268,
+   9335,
+   634528,
+   250388,
+   646389,
+   9545,
+   9208,
+   325173,
+   10538,
+   24411,
+   21610,
+   31017,
+   10999,
+   1103
+  ],
+  "productionCompanies": [
+   "Touchstone Pictures",
+   "Jerry Bruckheimer Films"
+  ],
+  "topCast": [
+   "Nicolas Cage",
+   "John Cusack",
+   "John Malkovich",
+   "Ving Rhames",
+   "Mykelti Williamson"
+  ],
+  "topCastDetail": [
+   {
+    "id": 2963,
+    "name": "Nicolas Cage",
+    "gender": 2
+   },
+   {
+    "id": 3036,
+    "name": "John Cusack",
+    "gender": 2
+   },
+   {
+    "id": 6949,
+    "name": "John Malkovich",
+    "gender": 2
+   },
+   {
+    "id": 10182,
+    "name": "Ving Rhames",
+    "gender": 2
+   },
+   {
+    "id": 34,
+    "name": "Mykelti Williamson",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1997-06-05",
+  "runtime": 116,
+  "director": "Simon West",
+  "directors": [
+   "Simon West"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Simon West",
+   "Jerry Bruckheimer",
+   "Lynn Bigelow-Kouf"
+  ],
+  "title": "Con Air",
+  "year": 1997,
+  "type": "movie",
+  "fetchedAt": "2026-11-22"
+ },
+ "movie:2013": {
+  "genres": [
+   "Drama",
+   "History"
+  ],
+  "overview": "Jean-Dominique Bauby, editor-in-chief of French fashion bible Elle magazine, has a devastating stroke at age 43. The damage to his brain stem results in locked-in syndrome, with which he is almost completely paralyzed and only able to communicate by blinking an eye. Bauby painstakingly dictates his memoir via the only means of expression left to him.",
+  "keywords": [
+   "dying and death",
+   "based on novel or book",
+   "writing",
+   "female lover",
+   "editor-in-chief",
+   "psychological stress",
+   "based on true story",
+   "patient",
+   "disabled",
+   "medical drama",
+   "psychological drama"
+  ],
+  "originalLanguage": "fr",
+  "imdbId": "tt0401383",
+  "voteAverage": 7.575,
+  "voteCount": 1341,
+  "popularity": 3.3004,
+  "posterPath": "/6NkJ4gnLrvLj0PZDW6sNM85JMbj.jpg",
+  "similarToIds": [
+   844,
+   845,
+   931,
+   947,
+   801,
+   840382,
+   456688,
+   975,
+   802,
+   805,
+   815,
+   819,
+   1259,
+   1265,
+   1543,
+   1557,
+   644495,
+   1625775,
+   268494,
+   903
+  ],
+  "recommendedIds": [
+   1001684,
+   254172,
+   108,
+   292011,
+   393945,
+   844409,
+   11005,
+   1317149,
+   1124,
+   42222,
+   753336,
+   397837,
+   121793,
+   17961,
+   1714,
+   777270,
+   467244,
+   58882,
+   506680,
+   716612
+  ],
+  "productionCompanies": [
+   "Path\u00e9 Renn Productions",
+   "France 3 Cin\u00e9ma",
+   "The Kennedy/Marshall Company"
+  ],
+  "topCast": [
+   "Mathieu Amalric",
+   "Emmanuelle Seigner",
+   "Marie-Jos\u00e9e Croze",
+   "Anne Consigny",
+   "Patrick Chesnais"
+  ],
+  "topCastDetail": [
+   {
+    "id": 8789,
+    "name": "Mathieu Amalric",
+    "gender": 2
+   },
+   {
+    "id": 8925,
+    "name": "Emmanuelle Seigner",
+    "gender": 1
+   },
+   {
+    "id": 8791,
+    "name": "Marie-Jos\u00e9e Croze",
+    "gender": 1
+   },
+   {
+    "id": 7276,
+    "name": "Anne Consigny",
+    "gender": 1
+   },
+   {
+    "id": 7275,
+    "name": "Patrick Chesnais",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2007-05-23",
+  "runtime": 112,
+  "director": "Julian Schnabel",
+  "directors": [
+   "Julian Schnabel"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Julian Schnabel",
+   "Kathleen Kennedy",
+   "Jon Kilik"
+  ],
+  "title": "The Diving Bell and the Butterfly",
+  "year": 2007,
+  "type": "movie",
+  "fetchedAt": "2026-11-22"
+ },
+ "movie:2017": {
+  "genres": [
+   "Action",
+   "Crime",
+   "Drama",
+   "Mystery",
+   "Thriller"
+  ],
+  "overview": "While doing a friend a favor and searching for a runaway teenager, a police detective stumbles upon a bizarre band of criminals about to pull off a bank robbery.",
+  "keywords": [
+   "robbery",
+   "police",
+   "hostage",
+   "bank",
+   "detective",
+   "robber",
+   "based on true story",
+   "femme fatale",
+   "thief",
+   "tension",
+   "theft",
+   "criminal",
+   "police officer",
+   "police detective",
+   "bank robbery"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0292610",
+  "voteAverage": 5.4,
+  "voteCount": 226,
+  "popularity": 2.5239,
+  "posterPath": "/lrQU72BcSfzJx71X1ko2K4LTtlE.jpg",
+  "similarToIds": [
+   459928,
+   459932,
+   5121,
+   4982,
+   4909,
+   4990,
+   4991,
+   4997,
+   272165,
+   272252,
+   1238198,
+   4562,
+   4535,
+   4735,
+   4639,
+   4655,
+   4680,
+   459869,
+   4823,
+   4836
+  ],
+  "recommendedIds": [
+   949,
+   5916,
+   26185,
+   20055,
+   119283,
+   22314,
+   388,
+   6723,
+   92272,
+   27725,
+   10623,
+   941109,
+   668489,
+   26124,
+   471507,
+   14638,
+   4771,
+   34379,
+   13197,
+   25284
+  ],
+  "productionCompanies": [
+   "ApolloMedia",
+   "Kismet Entertainment Group",
+   "Remstar Productions"
+  ],
+  "topCast": [
+   "Samuel L. Jackson",
+   "Milla Jovovich",
+   "Stellan Skarsg\u00e5rd",
+   "Doug Hutchison",
+   "Joss Ackland"
+  ],
+  "topCastDetail": [
+   {
+    "id": 2231,
+    "name": "Samuel L. Jackson",
+    "gender": 2
+   },
+   {
+    "id": 63,
+    "name": "Milla Jovovich",
+    "gender": 1
+   },
+   {
+    "id": 1640,
+    "name": "Stellan Skarsg\u00e5rd",
+    "gender": 2
+   },
+   {
+    "id": 6806,
+    "name": "Doug Hutchison",
+    "gender": 2
+   },
+   {
+    "id": 14324,
+    "name": "Joss Ackland",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2002-06-28",
+  "runtime": 97,
+  "director": "Bob Rafelson",
+  "directors": [
+   "Bob Rafelson"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Bob Rafelson",
+   "Barry M. Berg",
+   "David Braun"
+  ],
+  "title": "No Good Deed",
+  "year": 2002,
+  "type": "movie",
+  "fetchedAt": "2026-11-22"
+ },
+ "movie:11386": {
+  "genres": [
+   "Crime",
+   "Drama",
+   "Thriller"
+  ],
+  "overview": "Irish Republican Army member Fergus forms an unexpected bond with Jody, a kidnapped British soldier in his custody, despite the warnings of fellow IRA members Jude and Maguire. Jody makes Fergus promise he'll visit his girlfriend, Dil, in London, and when Fergus flees to the city, he seeks her out. Hounded by his former IRA colleagues, he finds himself increasingly drawn to the enigmatic, and surprising, Dil.",
+  "keywords": [
+   "love of one's life",
+   "transsexuality",
+   "hostage",
+   "secret identity",
+   "british army",
+   "northern ireland",
+   "betrayal",
+   "teenage crush",
+   "soldier",
+   "ira (irish republican army)",
+   "safe house",
+   "lgbt",
+   "political unrest",
+   "gender dysphoria",
+   "transgender"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0104036",
+  "voteAverage": 6.847,
+  "voteCount": 888,
+  "popularity": 3.4184,
+  "posterPath": "/9BXGoat9TYgdDqGk2WJmaX9dVoe.jpg",
+  "similarToIds": [
+   842,
+   844,
+   930,
+   946,
+   956,
+   965,
+   968,
+   975,
+   977,
+   979,
+   804,
+   1434515,
+   644205,
+   1538,
+   1539,
+   1541,
+   1543,
+   1544,
+   1546,
+   1558
+  ],
+  "recommendedIds": [
+   1027073,
+   43896,
+   13633,
+   1171296,
+   16885,
+   33851,
+   16759,
+   550776,
+   595743,
+   347984,
+   226,
+   252178,
+   37055,
+   464566,
+   4477,
+   38542,
+   9990,
+   10629,
+   1530875,
+   176241
+  ],
+  "productionCompanies": [
+   "Palace Pictures",
+   "Eurotrustees",
+   "Film4 Productions"
+  ],
+  "topCast": [
+   "Stephen Rea",
+   "Miranda Richardson",
+   "Jaye Davidson",
+   "Forest Whitaker",
+   "Adrian Dunbar"
+  ],
+  "topCastDetail": [
+   {
+    "id": 9029,
+    "name": "Stephen Rea",
+    "gender": 2
+   },
+   {
+    "id": 8436,
+    "name": "Miranda Richardson",
+    "gender": 1
+   },
+   {
+    "id": 228173,
+    "name": "Jaye Davidson",
+    "gender": 2
+   },
+   {
+    "id": 2178,
+    "name": "Forest Whitaker",
+    "gender": 2
+   },
+   {
+    "id": 42566,
+    "name": "Adrian Dunbar",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1992-09-02",
+  "runtime": 112,
+  "director": "Neil Jordan",
+  "directors": [
+   "Neil Jordan"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Neil Jordan",
+   "Stephen Woolley",
+   "Nik Powell"
+  ],
+  "title": "The Crying Game",
+  "year": 1992,
+  "type": "movie",
+  "fetchedAt": "2026-11-22"
+ },
+ "movie:11398": {
+  "genres": [
+   "Action",
+   "Thriller",
+   "Crime"
+  ],
+  "overview": "Neil Shaw is both agent and weapon - a critical line of defense for the Secretary General of the United Nations. He does not even officially exist. As an international security expert, he must uncover an international plot in which ruthless terrorists threatened to bring down the United Nations on the eve of an historic summit with China. A mysterious chain of events leads to the murder of the Chinese U.N. Ambassador, and the terrorists frame Neil Shaw, the one man they believe can stop them. Accused of the crime, Shaw goes underground \u2014 in effect, vanishing from his own life \u2014 as he tries to stop what could become World War III.",
+  "keywords": [
+   "new york city",
+   "martial arts",
+   "assassination",
+   "ambassador",
+   "china",
+   "spy",
+   "fbi",
+   "interpreter",
+   "chinese woman",
+   "secret agent",
+   "covert operation",
+   "conspiracy",
+   "hong kong",
+   "one man army",
+   "united nations"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0160009",
+  "voteAverage": 5.7,
+  "voteCount": 594,
+  "popularity": 2.7248,
+  "posterPath": "/9fbStI2ht3gMgsVRusqoBDWeK9c.jpg",
+  "similarToIds": [
+   40662,
+   21219,
+   21449,
+   21451,
+   21454,
+   21376,
+   21612,
+   1061536,
+   22178,
+   22058,
+   22154,
+   22160,
+   287991,
+   1255387,
+   21700,
+   21707,
+   21708,
+   476310,
+   476313,
+   21968
+  ],
+  "recommendedIds": [
+   19322,
+   8909,
+   19384,
+   9455,
+   14362,
+   27342,
+   14172,
+   45408,
+   2112,
+   2142,
+   2140,
+   611914,
+   379,
+   186,
+   1613,
+   20762,
+   9395,
+   10952,
+   15379,
+   483906
+  ],
+  "productionCompanies": [
+   "Amen Ra Films",
+   "Franchise Pictures",
+   "Filmline International"
+  ],
+  "topCast": [
+   "Wesley Snipes",
+   "Donald Sutherland",
+   "Anne Archer",
+   "Maury Chaykin",
+   "Liliana Komorowska"
+  ],
+  "topCastDetail": [
+   {
+    "id": 10814,
+    "name": "Wesley Snipes",
+    "gender": 2
+   },
+   {
+    "id": 55636,
+    "name": "Donald Sutherland",
+    "gender": 2
+   },
+   {
+    "id": 10427,
+    "name": "Anne Archer",
+    "gender": 1
+   },
+   {
+    "id": 7868,
+    "name": "Maury Chaykin",
+    "gender": 2
+   },
+   {
+    "id": 25689,
+    "name": "Liliana Komorowska",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2000-08-25",
+  "runtime": 117,
+  "director": "Christian Duguay",
+  "directors": [
+   "Christian Duguay"
+  ],
+  "belongsToCollection": {
+   "id": 25410,
+   "name": "The Art of War Collection"
+  },
+  "creatorCredits": [
+   "Christian Duguay",
+   "Wesley Snipes",
+   "Nicolas Clermont"
+  ],
+  "title": "The Art of War",
+  "year": 2000,
+  "type": "movie",
+  "fetchedAt": "2026-11-22"
+ },
+ "movie:11422": {
+  "genres": [
+   "Action",
+   "Drama",
+   "History",
+   "War"
+  ],
+  "overview": "This war drama depicts the U.S. and Japanese forces in the naval Battle of Midway, which became a turning point for Americans during World War II.",
+  "keywords": [
+   "world war ii",
+   "u.s. navy",
+   "based on true story",
+   "battle of midway",
+   "pacific war",
+   "soldier",
+   "american",
+   "pacific theater",
+   "sea battle",
+   "naval warfare",
+   "1940s",
+   "naval battle",
+   "dramatic",
+   "suspenseful"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0074899",
+  "voteAverage": 6.58,
+  "voteCount": 348,
+  "popularity": 6.0647,
+  "posterPath": "/vCzGV28YFmWubUn1jh8ytagYocR.jpg",
+  "similarToIds": [
+   455330,
+   267211,
+   290,
+   307,
+   309,
+   319,
+   326,
+   330,
+   266,
+   387,
+   388,
+   398,
+   1040115,
+   1623963,
+   266683,
+   454527,
+   266503,
+   266461,
+   117,
+   267140
+  ],
+  "recommendedIds": [
+   522162,
+   516486,
+   18771,
+   8619,
+   11165,
+   59709,
+   40578,
+   40683,
+   9664,
+   23928,
+   44691,
+   35583,
+   5902,
+   152760,
+   31623,
+   653851,
+   300673,
+   11209,
+   22301,
+   676
+  ],
+  "productionCompanies": [
+   "The Mirisch Company",
+   "Universal Pictures"
+  ],
+  "topCast": [
+   "Charlton Heston",
+   "Henry Fonda",
+   "James Coburn",
+   "Glenn Ford",
+   "Hal Holbrook"
+  ],
+  "topCastDetail": [
+   {
+    "id": 10017,
+    "name": "Charlton Heston",
+    "gender": 2
+   },
+   {
+    "id": 4958,
+    "name": "Henry Fonda",
+    "gender": 2
+   },
+   {
+    "id": 5563,
+    "name": "James Coburn",
+    "gender": 2
+   },
+   {
+    "id": 3381,
+    "name": "Glenn Ford",
+    "gender": 2
+   },
+   {
+    "id": 11066,
+    "name": "Hal Holbrook",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1976-06-18",
+  "runtime": 132,
+  "director": "Jack Smight",
+  "directors": [
+   "Jack Smight"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Jack Smight",
+   "Walter Mirisch"
+  ],
+  "title": "Midway",
+  "year": 1976,
+  "type": "movie",
+  "fetchedAt": "2026-11-22"
+ },
+ "movie:836018": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "On a hot summer day, Paloma decides to fulfill her most cherished dream: a traditional wedding in a church with her boyfriend Z\u00e9. She is a devoted mother, a hard-working farmhand in a papaya plantation and has been saving to afford the celebration. The priest\u2019s refusal to marry her and Z\u00e9 will force Paloma to confront the rural society. She suffers violence, betrayal, prejudice and injustice but nothing shakes the faith and determination of this transgender woman.",
+  "keywords": [
+   "plantation",
+   "wedding",
+   "reflective",
+   "traditional values",
+   "transgender",
+   "intense",
+   "audacious",
+   "cruel"
+  ],
+  "originalLanguage": "pt",
+  "imdbId": "tt12144262",
+  "voteAverage": 5.6,
+  "voteCount": 10,
+  "popularity": 0.3847,
+  "posterPath": "/czG6edn4tBjkVatilyECAehdemq.jpg",
+  "similarToIds": [
+   1630022,
+   4974,
+   4982,
+   843416,
+   4630,
+   4679,
+   459977,
+   647245,
+   4995,
+   4960,
+   5171,
+   1238264,
+   5638,
+   5592,
+   4498,
+   4547,
+   4564,
+   271902,
+   1044957,
+   5608
+  ],
+  "recommendedIds": [
+   18900,
+   1636891,
+   475214,
+   95342,
+   642803,
+   184341,
+   1126336,
+   226,
+   1033148,
+   545237,
+   72881,
+   6947,
+   410117,
+   520390,
+   804862,
+   846956,
+   9361,
+   1292415,
+   1001500,
+   35030
+  ],
+  "productionCompanies": [
+   "Carnaval Filmes",
+   "REC Produtores Associados",
+   "Ukbar Filmes"
+  ],
+  "topCast": [
+   "Kika Sena",
+   "Ridson Reis",
+   "Anita de Souza Macedo",
+   "Cl\u00e9bia Sousa",
+   "Marta Amorim"
+  ],
+  "topCastDetail": [
+   {
+    "id": 3639591,
+    "name": "Kika Sena",
+    "gender": 1
+   },
+   {
+    "id": 2183637,
+    "name": "Ridson Reis",
+    "gender": 0
+   },
+   {
+    "id": 3639592,
+    "name": "Anita de Souza Macedo",
+    "gender": 0
+   },
+   {
+    "id": 1016255,
+    "name": "Cl\u00e9bia Sousa",
+    "gender": 1
+   },
+   {
+    "id": 3971508,
+    "name": "Marta Amorim",
+    "gender": 0
+   }
+  ],
+  "releaseDate": "2022-11-10",
+  "runtime": 104,
+  "director": "Marcelo Gomes",
+  "directors": [
+   "Marcelo Gomes"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Marcelo Gomes",
+   "Nara Arag\u00e3o",
+   "Jo\u00e3o Vieira Jr."
+  ],
+  "title": "Paloma",
+  "year": 2022,
+  "type": "movie",
+  "fetchedAt": "2026-11-22"
+ },
+ "movie:5922": {
+  "genres": [
+   "Thriller",
+   "Action",
+   "Comedy"
+  ],
+  "overview": "During his long career, bounty hunter Ralph \"Papa\" Thorson has caught over 5,000 criminals. Now, while he is working on apprehending fugitives in Illinois, Texas and Nebraska, he himself is being hunted by a psychotic killer.",
+  "keywords": [
+   "bounty hunter",
+   "based on novel or book",
+   "stalker",
+   "ex-cop",
+   "stalking",
+   "gunfight",
+   "los angeles, california",
+   "agent",
+   "action hero",
+   "manhunt"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0080907",
+  "voteAverage": 5.9,
+  "voteCount": 165,
+  "popularity": 1.5281,
+  "posterPath": "/k3bTmSw62c0yP3oxbVICeho4PCB.jpg",
+  "similarToIds": [
+   305291,
+   40730,
+   40787,
+   475928,
+   21325,
+   287486,
+   1454616,
+   21619,
+   476424,
+   476433,
+   22311,
+   22323,
+   22327,
+   287966,
+   288158,
+   21972,
+   22279,
+   22090,
+   22112,
+   22121
+  ],
+  "recommendedIds": [
+   404733,
+   51997,
+   854467,
+   1601243,
+   1087891,
+   257088,
+   10159,
+   512195,
+   453405,
+   5174,
+   19403,
+   823625,
+   27590,
+   24528,
+   2109,
+   26180,
+   11001,
+   13534,
+   522016,
+   39514
+  ],
+  "productionCompanies": [
+   "Paramount Pictures",
+   "Rastar Productions"
+  ],
+  "topCast": [
+   "Steve McQueen",
+   "Eli Wallach",
+   "Kathryn Harrold",
+   "LeVar Burton",
+   "Ben Johnson"
+  ],
+  "topCastDetail": [
+   {
+    "id": 13565,
+    "name": "Steve McQueen",
+    "gender": 2
+   },
+   {
+    "id": 3265,
+    "name": "Eli Wallach",
+    "gender": 2
+   },
+   {
+    "id": 21519,
+    "name": "Kathryn Harrold",
+    "gender": 1
+   },
+   {
+    "id": 2390,
+    "name": "LeVar Burton",
+    "gender": 2
+   },
+   {
+    "id": 8258,
+    "name": "Ben Johnson",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1980-08-01",
+  "runtime": 93,
+  "director": "Buzz Kulik",
+  "directors": [
+   "Buzz Kulik"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Buzz Kulik",
+   "Mort Engelberg"
+  ],
+  "title": "The Hunter",
+  "year": 1980,
+  "type": "movie",
+  "fetchedAt": "2026-11-22"
+ },
+ "movie:5550": {
+  "genres": [
+   "Action",
+   "Science Fiction",
+   "Thriller"
+  ],
+  "overview": "The mega corporation Omni Consumer Products is still bent on creating their pet project, Delta City, to replace the rotting city of Detroit. Unfortunately, the inhabitants of the area have no intention of abandoning their homes simply for desires of the company. To this end, OCP have decided to force them to leave by employing a ruthless mercenary army to attack and harass them. An underground resistance begins and in this fight, RoboCop must decide where his loyalties lie.",
+  "keywords": [
+   "police",
+   "cyborg",
+   "dystopia",
+   "superhero",
+   "sequel",
+   "cyberpunk",
+   "transhumanism",
+   "policeman"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0107978",
+  "voteAverage": 4.908,
+  "voteCount": 1530,
+  "popularity": 3.6965,
+  "posterPath": "/ppLSSwCuC5ERRWbu9H3R8SPL9AM.jpg",
+  "similarToIds": [
+   4965,
+   4909,
+   4917,
+   4923,
+   4990,
+   272157,
+   1238144,
+   844041,
+   4639,
+   1237618,
+   843794,
+   272061,
+   1438499,
+   5546,
+   5548,
+   5549,
+   1238283,
+   1044957,
+   5289,
+   5677
+  ],
+  "recommendedIds": [
+   97020,
+   315837,
+   399579,
+   19959,
+   262500,
+   4965,
+   87101,
+   670292,
+   142061,
+   453405,
+   232842,
+   20526,
+   91314,
+   1023915,
+   522016,
+   206647,
+   54138,
+   348350,
+   1003580,
+   123025
+  ],
+  "productionCompanies": [
+   "Orion Pictures"
+  ],
+  "topCast": [
+   "Robert John Burke",
+   "Nancy Allen",
+   "Rip Torn",
+   "John Castle",
+   "Jill Hennessy"
+  ],
+  "topCastDetail": [
+   {
+    "id": 31512,
+    "name": "Robert John Burke",
+    "gender": 2
+   },
+   {
+    "id": 44038,
+    "name": "Nancy Allen",
+    "gender": 1
+   },
+   {
+    "id": 9626,
+    "name": "Rip Torn",
+    "gender": 2
+   },
+   {
+    "id": 15198,
+    "name": "John Castle",
+    "gender": 2
+   },
+   {
+    "id": 50877,
+    "name": "Jill Hennessy",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "1993-01-21",
+  "runtime": 105,
+  "director": "Fred Dekker",
+  "directors": [
+   "Fred Dekker"
+  ],
+  "belongsToCollection": {
+   "id": 5547,
+   "name": "RoboCop Collection"
+  },
+  "creatorCredits": [
+   "Fred Dekker",
+   "Patrick Crowley"
+  ],
+  "title": "RoboCop 3",
+  "year": 1993,
+  "type": "movie",
+  "fetchedAt": "2026-11-22"
+ },
+ "show:94425": {
+  "genres": [
+   "Mystery",
+   "Drama",
+   "Crime"
+  ],
+  "overview": "Kim Seo-hui\u2019s life is changed forever when her politician father dies in a car crash and her husband disappears \u2013 all in one day. She enters the world of politics and join hands with small-town detective Jo Tae-sik to uncover the truth when she finds out that the car crash might not have been an accident after all.",
+  "keywords": [
+   "detective",
+   "based on novel or book",
+   "investigation",
+   "car accident",
+   "missing husband",
+   "politician death",
+   "political",
+   "suspense"
+  ],
+  "originalLanguage": "ko",
+  "imdbId": "tt10919902",
+  "voteAverage": 6.9,
+  "voteCount": 28,
+  "popularity": 3.3023,
+  "posterPath": "/qinSC5tPqck8BIveuXzG7y7LpDd.jpg",
+  "similarToIds": [
+   282269,
+   245159,
+   62036,
+   62047,
+   1391,
+   1395,
+   1399,
+   1405,
+   1407,
+   1413,
+   313730,
+   245219,
+   129708,
+   62084,
+   62152,
+   62156,
+   96228,
+   96237,
+   96239,
+   129747
+  ],
+  "recommendedIds": [
+   259731,
+   137127,
+   40675,
+   213306,
+   203744,
+   99480,
+   72748,
+   4043,
+   16343,
+   80307,
+   85853,
+   246461,
+   7263,
+   258230,
+   3476,
+   292741,
+   135654,
+   271051,
+   220801,
+   61457
+  ],
+  "productionCompanies": [
+   "Studio Dragon"
+  ],
+  "topCast": [
+   "Lee You-young",
+   "Lee Min-ki",
+   "On Ju-wan",
+   "Lee Jun-hyeok",
+   "Kim Si-eun"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1246517,
+    "name": "Lee You-young",
+    "gender": 1
+   },
+   {
+    "id": 1299351,
+    "name": "Lee Min-ki",
+    "gender": 2
+   },
+   {
+    "id": 84980,
+    "name": "On Ju-wan",
+    "gender": 2
+   },
+   {
+    "id": 566372,
+    "name": "Lee Jun-hyeok",
+    "gender": 2
+   },
+   {
+    "id": 2369771,
+    "name": "Kim Si-eun",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2019-10-12",
+  "episodeRunTime": 60,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 16,
+  "seasonEpisodeCounts": {
+   "1": 16
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2019-12-01",
+   "seasonNumber": 1,
+   "episodeNumber": 16,
+   "name": "Those Who Were Silent, Those Who Were Not"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "OCN",
+   "Netflix"
+  ],
+  "creatorCredits": [],
+  "title": "The Lies Within",
+  "year": 2019,
+  "type": "show",
+  "fetchedAt": "2026-11-22"
+ },
+ "show:60556": {
+  "genres": [
+   "Drama",
+   "Sci-Fi & Fantasy"
+  ],
+  "overview": "Elena Micheals thought she left the world of supernatural behind when she left Stonehaven behind 'for good this time' she thought. Until the night she got the mysterious call from her pack leader asking her to come back. So now she is heading back, leaving her life as a normal photographer in Toronto for the moment to re-enter the world of werewolves, rules about protect the pack and a man she has spent years trying to get out of her system. Oh and did she mention she was the only living female werewolf in existence?",
+  "keywords": [
+   "based on novel or book",
+   "wolf",
+   "supernatural",
+   "werewolf",
+   "cursed"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt2365946",
+  "voteAverage": 7.2,
+  "voteCount": 282,
+  "popularity": 10.4837,
+  "posterPath": "/guhxl5I8J1WVEA3yeDt8hwgpYWx.jpg",
+  "similarToIds": [
+   2371,
+   130659,
+   130766,
+   130600,
+   283472,
+   283484,
+   214081,
+   246564,
+   97113,
+   214191,
+   31721,
+   31741,
+   246519,
+   31760,
+   31766,
+   63109,
+   63119,
+   31917,
+   31933,
+   31911
+  ],
+  "recommendedIds": [
+   134865,
+   63210,
+   82104,
+   207863,
+   79460,
+   10545,
+   18165,
+   256624,
+   33852,
+   42295,
+   211288,
+   67861,
+   253372,
+   71912,
+   219760,
+   12832,
+   91977,
+   288673,
+   95839,
+   2263
+  ],
+  "productionCompanies": [
+   "Bell Media",
+   "Hoodwink Entertainment",
+   "No Equal Entertainment"
+  ],
+  "topCast": [
+   "Laura Vandervoort",
+   "Greyston Holt",
+   "Greg Bryk",
+   "Steve Lund",
+   "Genelle Williams"
+  ],
+  "topCastDetail": [
+   {
+    "id": 43286,
+    "name": "Laura Vandervoort",
+    "gender": 1
+   },
+   {
+    "id": 206405,
+    "name": "Greyston Holt",
+    "gender": 2
+   },
+   {
+    "id": 231,
+    "name": "Greg Bryk",
+    "gender": 2
+   },
+   {
+    "id": 1290184,
+    "name": "Steve Lund",
+    "gender": 2
+   },
+   {
+    "id": 80969,
+    "name": "Genelle Williams",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2014-01-11",
+  "episodeRunTime": 42,
+  "createdBy": [
+   "Daegan Fryklind"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 3,
+  "numberOfEpisodes": 33,
+  "seasonEpisodeCounts": {
+   "1": 13,
+   "2": 10,
+   "3": 10
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2016-04-15",
+   "seasonNumber": 3,
+   "episodeNumber": 10,
+   "name": "Truth, Changes, Everything"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Space",
+   "Syfy"
+  ],
+  "creatorCredits": [
+   "Daegan Fryklind",
+   "John Barbisan",
+   "Tecca Crosby"
+  ],
+  "title": "Bitten",
+  "year": 2014,
+  "type": "show",
+  "fetchedAt": "2026-11-22"
+ },
+ "show:248818": {
+  "genres": [
+   "Drama",
+   "Mystery"
+  ],
+  "overview": "In 1943 Shanghai, an explosion leads to a showdown between Communist undercover agent Lu Zhengyang and former police officer Lin Shaobai. Six years later, Lu Zhengyang, now a key member of the Shanghai Public Security Bureau, recruits Lin Shaobai, the \"Shanghai Expert,\" to tackle major cases and thwart the plots of veteran spy Zheng Lanting. As they work together, Lu Zhengyang and Lin Shaobai build trust and become close comrades.",
+  "keywords": [
+   "undercover agent",
+   "period drama",
+   "chinese republican era"
+  ],
+  "originalLanguage": "zh",
+  "imdbId": "tt29363690",
+  "voteAverage": 7.6,
+  "voteCount": 8,
+  "popularity": 4.5146,
+  "posterPath": "/9ErUSwcHMdYWwwJPG6Vol5j1wx5.jpg",
+  "similarToIds": [
+   128019,
+   167,
+   185,
+   128849,
+   30214,
+   212333,
+   450,
+   620,
+   61431,
+   281702,
+   61498,
+   61241,
+   312731,
+   790,
+   244432,
+   799,
+   814,
+   61184,
+   753,
+   61444
+  ],
+  "recommendedIds": [
+   96450,
+   230835,
+   1486,
+   59134,
+   61933,
+   240445,
+   220102,
+   130464,
+   112945,
+   211089,
+   4040,
+   2474,
+   219971,
+   3216,
+   13266,
+   301626,
+   61511,
+   85853,
+   20053,
+   790
+  ],
+  "productionCompanies": [],
+  "topCast": [
+   "Chen Zheyuan",
+   "Nie Yuan",
+   "Xing Fei",
+   "Annabel Yao",
+   "Wang Zhiwen"
+  ],
+  "topCastDetail": [
+   {
+    "id": 2439184,
+    "name": "Chen Zheyuan",
+    "gender": 2
+   },
+   {
+    "id": 1251627,
+    "name": "Nie Yuan",
+    "gender": 2
+   },
+   {
+    "id": 1737082,
+    "name": "Xing Fei",
+    "gender": 1
+   },
+   {
+    "id": 3567741,
+    "name": "Annabel Yao",
+    "gender": 1
+   },
+   {
+    "id": 109435,
+    "name": "Wang Zhiwen",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2024-09-18",
+  "episodeRunTime": 45,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 38,
+  "seasonEpisodeCounts": {
+   "1": 38
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2024-10-04",
+   "seasonNumber": 1,
+   "episodeNumber": 38,
+   "name": "Episode 38"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "iQiyi"
+  ],
+  "creatorCredits": [],
+  "title": "Dark Night and Dawn",
+  "year": 2024,
+  "type": "show",
+  "fetchedAt": "2026-11-22"
+ },
+ "show:248764": {
+  "genres": [
+   "Drama",
+   "Crime"
+  ],
+  "overview": "A police officer pursuing a teenage suspect onto a busy train platform, knocks a bystander onto the train tracks, critically injuring them. As an intense investigation commences, the lives of the pursued and the pursuer are thrown into turmoil.",
+  "keywords": [
+   "police",
+   "bias",
+   "drug dealing",
+   "racism",
+   "psychological thriller",
+   "drugs",
+   "consequences",
+   "police department",
+   "accident"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt31591492",
+  "voteAverage": 4.8,
+  "voteCount": 6,
+  "popularity": 1.8271,
+  "posterPath": "/nW7VYn5FGFhSu6SFXchIdkf8Zd2.jpg",
+  "similarToIds": [
+   214005,
+   97268,
+   31741,
+   2222,
+   2233,
+   283133,
+   62927,
+   2428,
+   2301,
+   2303,
+   2319,
+   62781,
+   2379,
+   2332,
+   62620,
+   62514,
+   282890,
+   62504,
+   62505,
+   62507
+  ],
+  "recommendedIds": [
+   3216,
+   1486,
+   75540,
+   87773,
+   241549,
+   862,
+   1059,
+   155346,
+   1908,
+   138108,
+   86588,
+   3828,
+   262280,
+   287238,
+   60796,
+   120317,
+   4040,
+   1419,
+   64158,
+   84007
+  ],
+  "productionCompanies": [
+   "Matchbox Pictures",
+   "Stan",
+   "Screen Australia"
+  ],
+  "topCast": [
+   "Akshay Khanna",
+   "Zo\u00eb Boe",
+   "Roxie Mohebbi",
+   "Hunter Page-Lochard",
+   "Jai Waetford"
+  ],
+  "topCastDetail": [
+   {
+    "id": 3962153,
+    "name": "Akshay Khanna",
+    "gender": 2
+   },
+   {
+    "id": 4587418,
+    "name": "Zo\u00eb Boe",
+    "gender": 1
+   },
+   {
+    "id": 2420489,
+    "name": "Roxie Mohebbi",
+    "gender": 1
+   },
+   {
+    "id": 1503362,
+    "name": "Hunter Page-Lochard",
+    "gender": 2
+   },
+   {
+    "id": 4587419,
+    "name": "Jai Waetford",
+    "gender": 0
+   }
+  ],
+  "firstAirDate": "2024-08-12",
+  "episodeRunTime": null,
+  "createdBy": [
+   "Sarah Bassiuoni"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 6,
+  "seasonEpisodeCounts": {
+   "1": 6
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2024-08-12",
+   "seasonNumber": 1,
+   "episodeNumber": 6,
+   "name": "Strike"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Stan"
+  ],
+  "creatorCredits": [
+   "Sarah Bassiuoni",
+   "Cailah Scobie",
+   "Sheila Jayadev"
+  ],
+  "title": "Critical Incident",
+  "year": 2024,
+  "type": "show",
+  "fetchedAt": "2026-11-22"
+ },
+ "show:285462": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "Star Jalsha TV Shows",
+  "keywords": [
+   "romance",
+   "courtroom drama",
+   "thriller"
+  ],
+  "originalLanguage": "bn",
+  "imdbId": "tt30982648",
+  "voteAverage": 0.0,
+  "voteCount": 0,
+  "popularity": 5.5203,
+  "posterPath": "/1LG550s3bHHF9k66WxIV3JIAJd5.jpg",
+  "similarToIds": [
+   314531,
+   314540,
+   214005,
+   214130,
+   97276,
+   130731,
+   283484,
+   246548,
+   97126,
+   31874,
+   31880,
+   246515,
+   31766,
+   63114,
+   63123,
+   31923,
+   283260,
+   283220,
+   283101,
+   96932
+  ],
+  "recommendedIds": [
+   133908,
+   262848,
+   33155,
+   6127,
+   100575,
+   130464,
+   15354,
+   3828,
+   10860,
+   85385,
+   155278,
+   125116,
+   205272,
+   61933,
+   67683,
+   2850,
+   1526,
+   107365,
+   194741,
+   4170
+  ],
+  "productionCompanies": [
+   "Blues Productions"
+  ],
+  "topCast": [
+   "Hiya Mukherjee",
+   "Kunal Shil",
+   "Sanghamitra Talukder",
+   "Rahul Ganguly",
+   "Supriyo Dutta"
+  ],
+  "topCastDetail": [
+   {
+    "id": 6445734,
+    "name": "Hiya Mukherjee",
+    "gender": 1
+   },
+   {
+    "id": 6445733,
+    "name": "Kunal Shil",
+    "gender": 2
+   },
+   {
+    "id": 6377630,
+    "name": "Sanghamitra Talukder",
+    "gender": 1
+   },
+   {
+    "id": 6255599,
+    "name": "Rahul Ganguly",
+    "gender": 2
+   },
+   {
+    "id": 1280894,
+    "name": "Supriyo Dutta",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2023-11-19",
+  "episodeRunTime": null,
+  "createdBy": [],
+  "status": "Returning Series",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 676,
+  "seasonEpisodeCounts": {
+   "1": 676
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2025-10-02",
+   "seasonNumber": 1,
+   "episodeNumber": 676,
+   "name": "Episode 676"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "STAR Jalsha"
+  ],
+  "creatorCredits": [],
+  "title": "Geeta LLB",
+  "year": 2023,
+  "type": "show",
+  "fetchedAt": "2026-11-22"
+ },
+ "show:60866": {
+  "genres": [
+   "Drama",
+   "Crime",
+   "Sci-Fi & Fantasy"
+  ],
+  "overview": "A medical student who becomes a zombie joins a Coroner's Office in order to gain access to the brains she must reluctantly eat so that she can maintain her humanity. But every brain she eats, she also inherits their memories and must now solve their deaths with help from the Medical examiner and a police detective.",
+  "keywords": [
+   "seattle, washington",
+   "based on comic",
+   "morgue",
+   "female protagonist",
+   "zombie",
+   "based on graphic novel",
+   "coroner",
+   "crime investigation",
+   "medical examination",
+   "morbid",
+   "memory transfer",
+   "grand"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt3501584",
+  "voteAverage": 7.786,
+  "voteCount": 2994,
+  "popularity": 26.9,
+  "posterPath": "/q4nqNwAhzVR7JuYctrWJvUWz3xR.jpg",
+  "similarToIds": [
+   430,
+   312278,
+   60726,
+   60735,
+   60743,
+   281000,
+   60817,
+   281058,
+   406,
+   128289,
+   60673,
+   60708,
+   60715,
+   211346,
+   219,
+   236,
+   60796,
+   513,
+   604,
+   605
+  ],
+  "recommendedIds": [
+   1402,
+   2188,
+   60726,
+   94305,
+   60708,
+   206586,
+   95396,
+   1617,
+   2750,
+   254013,
+   36,
+   4330,
+   34415,
+   124364,
+   79240,
+   211684,
+   219,
+   213306,
+   80213,
+   7831
+  ],
+  "productionCompanies": [
+   "Warner Bros. Television",
+   "Spondoolie Productions",
+   "DC Vertigo"
+  ],
+  "topCast": [
+   "Rose McIver",
+   "David Anders",
+   "Robert Buckley",
+   "Malcolm Goodwin",
+   "Rahul Kohli"
+  ],
+  "topCastDetail": [
+   {
+    "id": 53485,
+    "name": "Rose McIver",
+    "gender": 1
+   },
+   {
+    "id": 40632,
+    "name": "David Anders",
+    "gender": 2
+   },
+   {
+    "id": 96792,
+    "name": "Robert Buckley",
+    "gender": 2
+   },
+   {
+    "id": 57997,
+    "name": "Malcolm Goodwin",
+    "gender": 2
+   },
+   {
+    "id": 1416505,
+    "name": "Rahul Kohli",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2015-03-17",
+  "episodeRunTime": 42,
+  "createdBy": [
+   "Diane Ruggiero-Wright",
+   "Rob Thomas"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 5,
+  "numberOfEpisodes": 71,
+  "seasonEpisodeCounts": {
+   "1": 13,
+   "2": 19,
+   "3": 13,
+   "4": 13,
+   "5": 13
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2019-08-01",
+   "seasonNumber": 5,
+   "episodeNumber": 13,
+   "name": "All's Well That Ends Well"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "The CW"
+  ],
+  "creatorCredits": [
+   "Diane Ruggiero-Wright",
+   "Rob Thomas",
+   "Dan Etheridge"
+  ],
+  "title": "iZombie",
+  "year": 2015,
+  "type": "show",
+  "fetchedAt": "2026-11-22"
+ },
+ "show:211288": {
+  "genres": [
+   "Drama",
+   "Crime"
+  ],
+  "overview": "Lone-wolf survivalist Colter Shaw roams the country as a \u201creward seeker,\u201d using his expert tracking skills to help private citizens and law enforcement solve all manner of mysteries while contending with his own fractured family.",
+  "keywords": [
+   "based on novel or book",
+   "lone wolf",
+   "tracker",
+   "survivalist",
+   "inspirational",
+   "admiring",
+   "excited"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt13875494",
+  "voteAverage": 7.6,
+  "voteCount": 356,
+  "popularity": 74.4324,
+  "posterPath": "/otula4h1ITZ0eV84eg7Lb8u614C.jpg",
+  "similarToIds": [
+   63333,
+   247013,
+   32166,
+   2875,
+   32226,
+   32245,
+   315226,
+   32016,
+   2692,
+   214634,
+   97801,
+   97819,
+   315007,
+   283961,
+   131142,
+   63915,
+   64048,
+   247496,
+   98125,
+   284430
+  ],
+  "recommendedIds": [
+   292741,
+   60556,
+   80213,
+   130578,
+   292742,
+   135868,
+   199001,
+   253376,
+   131927,
+   10370,
+   124364,
+   284558,
+   130464,
+   108181,
+   219760,
+   287238,
+   225265,
+   134865,
+   102904,
+   273240
+  ],
+  "productionCompanies": [
+   "ChangeUp Productions",
+   "AfterPortsmouth Productions",
+   "Beekeeper Entertainment"
+  ],
+  "topCast": [
+   "Justin Hartley",
+   "Fiona Rene",
+   "Chris Lee",
+   "Cassady McClincy-Zhang"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1222596,
+    "name": "Justin Hartley",
+    "gender": 2
+   },
+   {
+    "id": 1485985,
+    "name": "Fiona Rene",
+    "gender": 1
+   },
+   {
+    "id": 2359792,
+    "name": "Chris Lee",
+    "gender": 2
+   },
+   {
+    "id": 1792414,
+    "name": "Cassady McClincy-Zhang",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2024-02-11",
+  "episodeRunTime": null,
+  "createdBy": [
+   "Ben H. Winters"
+  ],
+  "status": "Returning Series",
+  "numberOfSeasons": 4,
+  "numberOfEpisodes": 65,
+  "seasonEpisodeCounts": {
+   "1": 13,
+   "2": 20,
+   "3": 22,
+   "4": 10
+  },
+  "nextEpisodeToAir": {
+   "airDate": "2026-11-22",
+   "seasonNumber": 4,
+   "episodeNumber": 7
+  },
+  "lastEpisodeToAir": {
+   "airDate": "2026-11-15",
+   "seasonNumber": 4,
+   "episodeNumber": 6,
+   "name": "Blind Spot"
+  },
+  "currentSeasonFinale": {
+   "seasonNumber": 4,
+   "episodeCount": 10,
+   "finaleEpisodeNumber": 10,
+   "finaleDate": "2027-01-17"
+  },
+  "networks": [
+   "CBS"
+  ],
+  "creatorCredits": [
+   "Ben H. Winters",
+   "Justin Hartley",
+   "Ken Olin"
+  ],
+  "title": "Tracker",
+  "year": 2024,
+  "type": "show",
+  "fetchedAt": "2026-11-22"
+ },
+ "show:31911": {
+  "genres": [
+   "Animation",
+   "Action & Adventure",
+   "Sci-Fi & Fantasy",
+   "Drama"
+  ],
+  "overview": "Disregard for alchemy\u2019s laws ripped half of Edward Elric\u2019s limbs from his body and left his brother Alphonse\u2019s soul clinging to a suit of armor. To restore what was lost, the brothers seek the Philosopher\u2019s Stone. Enemies and allies \u2013 the corrupt military, the Homunculi, and foreign alchemists \u2013 will alter the Elric brothers course, but their purpose will remain unchanged and their bond unbreakable.",
+  "keywords": [
+   "politics",
+   "supernatural",
+   "remake",
+   "revenge",
+   "travel",
+   "steampunk",
+   "conspiracy",
+   "based on manga",
+   "alchemy",
+   "military",
+   "alchemist",
+   "philosopher's stone",
+   "shounen",
+   "anime",
+   "philosophical"
+  ],
+  "originalLanguage": "ja",
+  "imdbId": "tt1355642",
+  "voteAverage": 8.722,
+  "voteCount": 2646,
+  "popularity": 48.3786,
+  "posterPath": "/5ZFUEOULaVml7pQuXxhpR2SmVUw.jpg",
+  "similarToIds": [
+   2359,
+   2364,
+   2366,
+   314554,
+   314561,
+   314578,
+   314582,
+   97243,
+   97268,
+   130659,
+   130674,
+   130765,
+   130728,
+   283459,
+   283378,
+   97220,
+   31713,
+   31714,
+   31715,
+   31718
+  ],
+  "recommendedIds": [
+   156898,
+   92090,
+   5894,
+   45790,
+   66053,
+   61223,
+   34141,
+   85937,
+   69346,
+   1429,
+   65931,
+   258348,
+   218843,
+   120241,
+   87142,
+   219673,
+   61374,
+   76125,
+   123525,
+   78102
+  ],
+  "productionCompanies": [
+   "BONES",
+   "Aniplex",
+   "Square Enix"
+  ],
+  "topCast": [
+   "Romi Park",
+   "Rie Kugimiya",
+   "Shin-ichiro Miki",
+   "Fumiko Orikasa",
+   "Megumi Takamoto"
+  ],
+  "topCastDetail": [
+   {
+    "id": 81243,
+    "name": "Romi Park",
+    "gender": 1
+   },
+   {
+    "id": 83928,
+    "name": "Rie Kugimiya",
+    "gender": 1
+   },
+   {
+    "id": 62318,
+    "name": "Shin-ichiro Miki",
+    "gender": 2
+   },
+   {
+    "id": 23988,
+    "name": "Fumiko Orikasa",
+    "gender": 1
+   },
+   {
+    "id": 589612,
+    "name": "Megumi Takamoto",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2009-04-05",
+  "episodeRunTime": null,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 64,
+  "seasonEpisodeCounts": {
+   "1": 64
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2010-07-04",
+   "seasonNumber": 1,
+   "episodeNumber": 64,
+   "name": "Journey's End"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "MBS",
+   "TBS",
+   "CBC",
+   "Tulip Television",
+   "SBC",
+   "BSN",
+   "tys",
+   "NBC",
+   "HBC",
+   "RKK",
+   "i-Television",
+   "SBS",
+   "IBC",
+   "BSS",
+   "MRO",
+   "OBS",
+   "TUF",
+   "RSK",
+   "TUY",
+   "tbc",
+   "RKB",
+   "KUTV",
+   "RBC",
+   "UTY",
+   "RCC",
+   "MRT",
+   "ATV",
+   "MBC"
+  ],
+  "creatorCredits": [],
+  "title": "Fullmetal Alchemist: Brotherhood",
+  "year": 2009,
+  "type": "show",
+  "fetchedAt": "2026-11-22"
+ },
+ "show:128008": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "Resourceful young Hugo Llor works to make a name for himself in 14th-century Barcelona while keeping a vow he made to the Estanyol family.",
+  "keywords": [
+   "barcelona, spain",
+   "based on novel or book",
+   "sequel",
+   "14th century"
+  ],
+  "originalLanguage": "es",
+  "imdbId": "tt13308276",
+  "voteAverage": 6.9,
+  "voteCount": 42,
+  "popularity": 3.7486,
+  "posterPath": "/zuYtzT6rLn5N4g5XHivpkaM5Yls.jpg",
+  "similarToIds": [
+   289,
+   128252,
+   312225,
+   29642,
+   243902,
+   243951,
+   280945,
+   94834,
+   94997,
+   128068,
+   29650,
+   29574,
+   128095,
+   128098,
+   128301,
+   211436,
+   29549,
+   127875,
+   127865,
+   211358
+  ],
+  "recommendedIds": [
+   72613,
+   115567,
+   86428,
+   259702,
+   107365,
+   207333,
+   116761,
+   227371,
+   199001,
+   284558,
+   94167,
+   250988,
+   224490,
+   273240,
+   131142,
+   131927,
+   40204,
+   260592,
+   253376,
+   242874
+  ],
+  "productionCompanies": [
+   "Diagonal TV"
+  ],
+  "topCast": [],
+  "topCastDetail": [],
+  "firstAirDate": "2022-04-15",
+  "episodeRunTime": 50,
+  "createdBy": [
+   "Rodolf Sirera"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 8,
+  "seasonEpisodeCounts": {
+   "1": 8
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2022-04-15",
+   "seasonNumber": 1,
+   "episodeNumber": 8,
+   "name": "Redemption"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Netflix"
+  ],
+  "creatorCredits": [
+   "Rodolf Sirera"
+  ],
+  "title": "Heirs to the Land",
+  "year": 2022,
+  "type": "show",
+  "fetchedAt": "2026-11-22"
+ },
+ "show:96170": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "",
+  "keywords": [
+   "new york city",
+   "sicily, italy",
+   "italian american",
+   "family relationships",
+   "1920s",
+   "italian immigrant"
+  ],
+  "originalLanguage": "it",
+  "imdbId": "tt4548554",
+  "voteAverage": 6.5,
+  "voteCount": 9,
+  "popularity": 2.4382,
+  "posterPath": "/bGoUru7H7HS5jvVqMjHe8k5xknq.jpg",
+  "similarToIds": [
+   211434,
+   60574,
+   625,
+   128098,
+   549,
+   60726,
+   60839,
+   128537,
+   750,
+   512,
+   524,
+   29650,
+   29574,
+   61014,
+   95249,
+   95170,
+   211971,
+   244432,
+   60803,
+   128561
+  ],
+  "recommendedIds": [
+   205482,
+   79622,
+   1398,
+   51537,
+   289560,
+   46533,
+   4275,
+   73671,
+   81723,
+   72071,
+   61463,
+   257994,
+   61933,
+   62251,
+   18109,
+   124394,
+   72742,
+   58937,
+   57276,
+   46441
+  ],
+  "productionCompanies": [
+   "Rai Fiction",
+   "Picomedia"
+  ],
+  "topCast": [
+   "Luisa Ranieri",
+   "Thomas Trabacchi",
+   "Francesco Arca",
+   "Miriam Dalmazio",
+   "Emilio Fallarino"
+  ],
+  "topCastDetail": [
+   {
+    "id": 119172,
+    "name": "Luisa Ranieri",
+    "gender": 1
+   },
+   {
+    "id": 296690,
+    "name": "Thomas Trabacchi",
+    "gender": 2
+   },
+   {
+    "id": 1299312,
+    "name": "Francesco Arca",
+    "gender": 2
+   },
+   {
+    "id": 1266274,
+    "name": "Miriam Dalmazio",
+    "gender": 1
+   },
+   {
+    "id": 3242615,
+    "name": "Emilio Fallarino",
+    "gender": 0
+   }
+  ],
+  "firstAirDate": "2018-09-16",
+  "episodeRunTime": null,
+  "createdBy": [
+   "Ricky Tognazzi"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 2,
+  "numberOfEpisodes": 8,
+  "seasonEpisodeCounts": {
+   "1": 4,
+   "2": 4
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2020-03-15",
+   "seasonNumber": 2,
+   "episodeNumber": 4,
+   "name": "Episode 4"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Rai 1"
+  ],
+  "creatorCredits": [
+   "Ricky Tognazzi",
+   "Gianfranco Pierantoni"
+  ],
+  "title": "The Promised Life",
+  "year": 2018,
+  "type": "show",
+  "fetchedAt": "2026-11-22"
+ },
+ "movie:1307373": {
+  "genres": [
+   "Crime",
+   "Drama",
+   "Thriller"
+  ],
+  "overview": "Taylor's hopes for a fresh start post-parole are jeopardised by cellmate Dee's arrival. As Dee takes Taylor under his wing, a vicious attack tests their bond, forcing Taylor to choose between protecting Dee and his own chances at freedom.",
+  "keywords": [
+   "prison",
+   "male friendship",
+   "addiction",
+   "drug dealing",
+   "parole",
+   "parolee",
+   "estranged son",
+   "british prison",
+   "prison yard",
+   "prison drama"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt29028515",
+  "voteAverage": 7.4,
+  "voteCount": 151,
+  "popularity": 9.1168,
+  "posterPath": "/lKK9ImwpoTCwDZKgYpjIIJCnlf0.jpg",
+  "similarToIds": [
+   268649,
+   1554,
+   903,
+   883,
+   885,
+   898,
+   2100,
+   2155,
+   270037,
+   2469,
+   4962,
+   4982,
+   4985,
+   4929,
+   5333,
+   5724,
+   272601,
+   460571,
+   5971,
+   5996
+  ],
+  "recommendedIds": [
+   18533,
+   13054,
+   1117379,
+   11327,
+   245527,
+   665896,
+   398175,
+   15255,
+   1662,
+   9558,
+   9516,
+   534490,
+   33357,
+   51512,
+   538207,
+   9990,
+   21309,
+   20762,
+   38539,
+   109843
+  ],
+  "productionCompanies": [
+   "Bankside Films",
+   "Hoopsa Films",
+   "Agile Films"
+  ],
+  "topCast": [
+   "David Jonsson",
+   "Tom Blyth",
+   "Alex Hassell",
+   "Neil Linpow",
+   "Paul Hilton"
+  ],
+  "topCastDetail": [
+   {
+    "id": 2761308,
+    "name": "David Jonsson",
+    "gender": 2
+   },
+   {
+    "id": 1524100,
+    "name": "Tom Blyth",
+    "gender": 2
+   },
+   {
+    "id": 178634,
+    "name": "Alex Hassell",
+    "gender": 2
+   },
+   {
+    "id": 583816,
+    "name": "Neil Linpow",
+    "gender": 2
+   },
+   {
+    "id": 134466,
+    "name": "Paul Hilton",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2026-02-20",
+  "runtime": 90,
+  "director": "Cal McMau",
+  "directors": [
+   "Cal McMau"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Cal McMau",
+   "Sophia Gibber",
+   "Myles Payne"
+  ],
+  "title": "Wasteman",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-11-22"
+ },
+ "movie:1300968": {
+  "genres": [
+   "Science Fiction",
+   "Action",
+   "Adventure"
+  ],
+  "overview": "Return to the world of Panem 24 years before Katniss Everdeen volunteers in her sister's place, commencing on the morning of the reaping of the 50th Hunger Games, also known as the Second Quarter Quell.",
+  "keywords": [
+   "based on novel or book",
+   "dystopia",
+   "post-apocalyptic future",
+   "killing fields",
+   "sequel",
+   "prequel",
+   "based on young adult novel",
+   "fiction",
+   "fantasy",
+   "frustrated",
+   "violent revenge"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt32558705",
+  "voteAverage": 7.709,
+  "voteCount": 208,
+  "popularity": 343.0825,
+  "posterPath": "/jNcZH8yplxttRlf0wwqfGGMKHxX.jpg",
+  "similarToIds": [
+   4977,
+   4909,
+   4917,
+   4923,
+   4928,
+   844041,
+   4537,
+   1237618,
+   4858,
+   843794,
+   843843,
+   843846,
+   5052,
+   460059,
+   844081,
+   5546,
+   5548,
+   5549,
+   5550,
+   4546
+  ],
+  "recommendedIds": [
+   131634,
+   101299,
+   131631,
+   695721,
+   428078,
+   262504,
+   336843,
+   72710,
+   487186,
+   1452,
+   141052,
+   262500,
+   181812,
+   70160,
+   412656,
+   188927,
+   572802,
+   91314,
+   1895,
+   157350
+  ],
+  "productionCompanies": [
+   "Lionsgate",
+   "Color Force",
+   "about:blank"
+  ],
+  "topCast": [
+   "Joseph Zada",
+   "Jesse Plemons",
+   "Ralph Fiennes",
+   "Glenn Close",
+   "Mckenna Grace"
+  ],
+  "topCastDetail": [
+   {
+    "id": 4744857,
+    "name": "Joseph Zada",
+    "gender": 2
+   },
+   {
+    "id": 88124,
+    "name": "Jesse Plemons",
+    "gender": 2
+   },
+   {
+    "id": 5469,
+    "name": "Ralph Fiennes",
+    "gender": 2
+   },
+   {
+    "id": 515,
+    "name": "Glenn Close",
+    "gender": 1
+   },
+   {
+    "id": 1172108,
+    "name": "Mckenna Grace",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2026-11-18",
+  "runtime": 158,
+  "director": "Francis Lawrence",
+  "directors": [
+   "Francis Lawrence"
+  ],
+  "belongsToCollection": {
+   "id": 1701563,
+   "name": "The Hunger Games Prequel Collection"
+  },
+  "creatorCredits": [
+   "Francis Lawrence",
+   "Brad Simpson",
+   "Nina Jacobson"
+  ],
+  "title": "The Hunger Games: Sunrise on the Reaping",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-11-22"
+ },
+ "movie:1567605": {
+  "genres": [
+   "Fantasy",
+   "Drama",
+   "Horror"
+  ],
+  "overview": "An elderly miser embarks on a supernatural journey after visits from the ghost of his former business partner and the Spirits of Christmas Past, Present, and Yet to Come force him to confront his past and fight for a second chance at happiness.",
+  "keywords": [
+   "london, england",
+   "based on novel or book",
+   "holiday",
+   "redemption",
+   "spirit",
+   "gothic",
+   "ghost",
+   "dark fantasy",
+   "christmas",
+   "19th century",
+   "somber",
+   "self reflection",
+   "victorian era",
+   "scrooge",
+   "gothic fantasy"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt38773219",
+  "voteAverage": 7.484,
+  "voteCount": 152,
+  "popularity": 108.8828,
+  "posterPath": "/6H2N59jJW1hZEzn2ZdrMvJw5vNI.jpg",
+  "similarToIds": [
+   305291,
+   681588,
+   881239,
+   881245,
+   881246,
+   1273478,
+   40713,
+   40718,
+   40730,
+   40732,
+   1081676,
+   881180,
+   40611,
+   40767,
+   40775,
+   40787,
+   475928,
+   21198,
+   21447,
+   21450
+  ],
+  "recommendedIds": [
+   1585,
+   1116488,
+   49391,
+   32235,
+   47257,
+   9092,
+   369059,
+   24808,
+   33821,
+   49730,
+   32790,
+   23439,
+   387399,
+   2637,
+   1399525,
+   7980,
+   58595,
+   397837,
+   638186,
+   14499
+  ],
+  "productionCompanies": [
+   "Paramount Pictures",
+   "Domain Entertainment",
+   "Wattsco"
+  ],
+  "topCast": [
+   "Johnny Depp",
+   "Rupert Grint",
+   "Daisy Ridley",
+   "Ian McKellen",
+   "Andrea Riseborough"
+  ],
+  "topCastDetail": [
+   {
+    "id": 85,
+    "name": "Johnny Depp",
+    "gender": 2
+   },
+   {
+    "id": 10989,
+    "name": "Rupert Grint",
+    "gender": 2
+   },
+   {
+    "id": 1315036,
+    "name": "Daisy Ridley",
+    "gender": 1
+   },
+   {
+    "id": 1327,
+    "name": "Ian McKellen",
+    "gender": 2
+   },
+   {
+    "id": 127558,
+    "name": "Andrea Riseborough",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2026-11-11",
+  "runtime": 115,
+  "director": "Ti West",
+  "directors": [
+   "Ti West"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Ti West",
+   "Emma Watts",
+   "Stephen Deuters"
+  ],
+  "title": "Ebenezer",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-11-22"
+ },
+ "movie:472674": {
+  "genres": [
+   "Drama",
+   "Crime",
+   "Mystery"
+  ],
+  "overview": "A boy in New York is taken in by a wealthy family after his mother is killed in a bombing at the Metropolitan Museum of Art. In a rush of panic, he steals 'The Goldfinch', a painting that eventually draws him into a world of crime.",
+  "keywords": [
+   "new york city",
+   "based on novel or book",
+   "museum",
+   "painting",
+   "art",
+   "bombing",
+   "complex",
+   "teenage protagonist",
+   "ambiguous",
+   "melodramatic"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt3864056",
+  "voteAverage": 7.115,
+  "voteCount": 971,
+  "popularity": 3.2814,
+  "posterPath": "/5Jx9VyVPiK9GQ7ouKLkTUYnZSQ4.jpg",
+  "similarToIds": [
+   305291,
+   681588,
+   40713,
+   40718,
+   40730,
+   1081676,
+   40787,
+   475928,
+   475953,
+   475958,
+   21219,
+   21447,
+   21454,
+   475888,
+   21291,
+   21325,
+   1254715,
+   287486,
+   1454616,
+   21612
+  ],
+  "recommendedIds": [
+   1492640,
+   68727,
+   10518,
+   4836,
+   398181,
+   9882,
+   14786,
+   8289,
+   1429,
+   30341,
+   346685,
+   499292,
+   520663,
+   25680,
+   11324,
+   799546,
+   1020662,
+   13072,
+   364150,
+   255157
+  ],
+  "productionCompanies": [
+   "Color Force",
+   "Amazon Studios",
+   "Warner Bros. Pictures"
+  ],
+  "topCast": [
+   "Ansel Elgort",
+   "Oakes Fegley",
+   "Nicole Kidman",
+   "Jeffrey Wright",
+   "Luke Wilson"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1159982,
+    "name": "Ansel Elgort",
+    "gender": 2
+   },
+   {
+    "id": 1422517,
+    "name": "Oakes Fegley",
+    "gender": 2
+   },
+   {
+    "id": 2227,
+    "name": "Nicole Kidman",
+    "gender": 1
+   },
+   {
+    "id": 2954,
+    "name": "Jeffrey Wright",
+    "gender": 2
+   },
+   {
+    "id": 36422,
+    "name": "Luke Wilson",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2019-09-12",
+  "runtime": 149,
+  "director": "John Crowley",
+  "directors": [
+   "John Crowley"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "John Crowley",
+   "Sue Kroll",
+   "Kevin McCormick"
+  ],
+  "title": "The Goldfinch",
+  "year": 2019,
+  "type": "movie",
+  "fetchedAt": "2026-11-22"
+ },
+ "show:131651": {
+  "genres": [
+   "Documentary",
+   "War & Politics"
+  ],
+  "overview": "Modern history can be divided into two time frames: before 9/11 and after 9/11. This five-part docuseries is a cohesive chronicle of the September 11, 2001 attacks on the U.S., offering illuminating perspectives and personal stories of how the catastrophic events of that day changed the course of the nation.",
+  "keywords": [
+   "post-traumatic stress disorder (ptsd)",
+   "washington dc, usa",
+   "war on terror",
+   "fbi",
+   "pentagon",
+   "national security agency (nsa)",
+   "guantanamo bay",
+   "mujahid",
+   "politics",
+   "afghanistan war (2001-2021)",
+   "taliban",
+   "guant\u00e1namo",
+   "airplane hijacking",
+   "torture",
+   "terrorism"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt15260794",
+  "voteAverage": 7.287,
+  "voteCount": 150,
+  "popularity": 4.2423,
+  "posterPath": "/aWHyzSVVVlKcd6KIuZCMIvD5TPZ.jpg",
+  "similarToIds": [
+   2775,
+   63248,
+   131259,
+   131139,
+   2947,
+   64003,
+   63813,
+   98116,
+   215070,
+   284223,
+   98335,
+   247829,
+   64375,
+   64580,
+   98551,
+   64484,
+   33261,
+   98331,
+   33050,
+   132057
+  ],
+  "recommendedIds": [
+   46353,
+   91724,
+   127626,
+   316992,
+   77393,
+   283367,
+   83181,
+   118043,
+   233237,
+   46434,
+   70508,
+   102905,
+   262277,
+   275571,
+   126422,
+   70249,
+   105763,
+   286788,
+   83109,
+   245926
+  ],
+  "productionCompanies": [
+   "Luminant Media"
+  ],
+  "topCast": [],
+  "topCastDetail": [],
+  "firstAirDate": "2021-09-01",
+  "episodeRunTime": null,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 5,
+  "seasonEpisodeCounts": {
+   "1": 5
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2021-09-01",
+   "seasonNumber": 1,
+   "episodeNumber": 5,
+   "name": "Graveyard of Empires"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Netflix"
+  ],
+  "creatorCredits": [
+   "Lowell Bergman",
+   "Eve Marson",
+   "Brian Knappenberger"
+  ],
+  "title": "Turning Point: 9/11 and the War on Terror",
+  "year": 2021,
+  "type": "show",
+  "fetchedAt": "2026-11-22"
+ },
+ "show:97401": {
+  "genres": [
+   "Documentary"
+  ],
+  "overview": "The stakes on the mat are high, but for these cheerleaders, the only thing more brutal than their workouts and more exceptional than their performances are the stories of adversity and triumph behind the athletes themselves.",
+  "keywords": [
+   "competition",
+   "dance",
+   "college",
+   "cheerleading",
+   "gritty",
+   "reality",
+   "captivating",
+   "exciting",
+   "sport"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt11426660",
+  "voteAverage": 7.35,
+  "voteCount": 150,
+  "popularity": 2.8312,
+  "posterPath": "/5GzthY7qguoUs43K9qmwHJWjI05.jpg",
+  "similarToIds": [
+   454,
+   211631,
+   29635,
+   281248,
+   128762,
+   281374,
+   1044,
+   281514,
+   60152,
+   243929,
+   129333,
+   95801,
+   282267,
+   282282,
+   248223,
+   216386,
+   318838,
+   67528,
+   138137,
+   32653
+  ],
+  "recommendedIds": [
+   118876,
+   87083,
+   88401,
+   335536,
+   87216,
+   102905,
+   112440,
+   69763,
+   105763,
+   83247,
+   316992,
+   225292,
+   233051,
+   333533,
+   318880,
+   83181,
+   220998,
+   72141,
+   157002,
+   254930
+  ],
+  "productionCompanies": [
+   "Boardwalk Pictures",
+   "One Potato Productions",
+   "Caviar"
+  ],
+  "topCast": [
+   "Monica Aldama",
+   "Gabi Butler",
+   "Morgan Simianer",
+   "La'Darius Marshall",
+   "Maddy Brum"
+  ],
+  "topCastDetail": [
+   {
+    "id": 2529795,
+    "name": "Monica Aldama",
+    "gender": 1
+   },
+   {
+    "id": 2529802,
+    "name": "Gabi Butler",
+    "gender": 1
+   },
+   {
+    "id": 2529799,
+    "name": "Morgan Simianer",
+    "gender": 1
+   },
+   {
+    "id": 2572253,
+    "name": "La'Darius Marshall",
+    "gender": 2
+   },
+   {
+    "id": 3379706,
+    "name": "Maddy Brum",
+    "gender": 0
+   }
+  ],
+  "firstAirDate": "2020-01-08",
+  "episodeRunTime": 59,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 2,
+  "numberOfEpisodes": 15,
+  "seasonEpisodeCounts": {
+   "1": 6,
+   "2": 9
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2022-01-12",
+   "seasonNumber": 2,
+   "episodeNumber": 9,
+   "name": "Daytona Pt. 2: If the Judges Disagree"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Netflix"
+  ],
+  "creatorCredits": [],
+  "title": "Cheer",
+  "year": 2020,
+  "type": "show",
+  "fetchedAt": "2026-11-22"
  }
 }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T16:41:34.377Z",
+  "generatedAt": "2026-11-22T17:28:19.101Z",
   "methodology": "ratio = (theme's share of Bill's real 5-star-read theme tags) / (its mapped BMTRE genre/subgenre/subject tag's share of his real loved-title rating-weighted score). ratio > 1 means the theme is proportionally bigger in his book taste than his current screen taste (and therefore the citation-graph-seeded candidate pool) already reflects. Evidence floor: bookCount >= 15. Gap floor: ratio > 1.15.",
   "gaps": [
     {
@@ -9,7 +9,7 @@
         "courtroom"
       ],
       "bookCount": 48,
-      "ratio": 3.45,
+      "ratio": 3.46,
       "tags": [
         "subgenre:legal"
       ],
@@ -92,7 +92,7 @@
         "biography"
       ],
       "bookCount": 19,
-      "ratio": 1.16,
+      "ratio": 1.17,
       "tags": [
         "genre:biography"
       ],
