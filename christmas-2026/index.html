@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Christmas Watchlist 2026</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pine:#0f3d2a; --pine-2:#165a3b; --pine-3:#1f7a4f;
+  --berry:#c0272d; --berry-2:#e23a41; --gold:#f5c542; --snow:#fffdf7; --ink:#1b2a22;
+  --card:#fffdf7; --muted:#5d6f64;
+}
+@media (prefers-color-scheme: dark){ :root{ --card:#fbf6e9; } }
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; background:#0b2e20}
+body{
+  margin:0; min-height:100vh; color:var(--ink);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(1200px 500px at 50% -10%, #2a8a5c33, transparent 60%),
+    linear-gradient(180deg,var(--pine) 0%, var(--pine-2) 55%, #0b2e20 100%);
+  background-attachment:fixed;
+}
+#snow{position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:0}
+.lights{
+  position:relative; z-index:2; height:46px; overflow:hidden;
+  display:flex; justify-content:space-around; align-items:flex-start; padding:0 4px;
+}
+.lights::before{content:""; position:absolute; left:0; right:0; top:6px; height:2px; background:#0a2418;}
+.lights i{
+  position:relative; width:14px; height:20px; margin-top:6px; border-radius:50% 50% 55% 55%;
+  background:var(--c); box-shadow:0 0 12px 3px var(--c); animation:twinkle 2.4s infinite ease-in-out;
+  animation-delay:var(--d);
+}
+.lights i::before{content:""; position:absolute; top:-5px; left:3px; width:8px; height:7px; background:#0a2418; border-radius:2px}
+@keyframes twinkle{0%,100%{opacity:1; filter:brightness(1.1)} 50%{opacity:.45; filter:brightness(.8)}}
+@media (prefers-reduced-motion: reduce){ .lights i{animation:none} #snow{display:none} }
+
+main{position:relative; z-index:1; max-width:640px; margin:0 auto; padding:8px 16px 56px}
+.back{display:inline-block; margin:8px 0 0; color:#cfe8d8; font-size:.85rem; text-decoration:none; opacity:.85}
+.back:hover{opacity:1; text-decoration:underline}
+h1{
+  font-family:"Mountains of Christmas",Georgia,serif; font-weight:700;
+  font-size:clamp(2.4rem,10vw,3.6rem); line-height:1.05; margin:8px 0 4px; text-align:center;
+  color:var(--snow); text-shadow:0 3px 0 var(--berry), 0 8px 24px #0006;
+}
+.sub{text-align:center; color:#d8efe0; margin:0 0 18px}
+.stats{display:flex; gap:10px; margin-bottom:16px}
+.stat{
+  flex:1; text-align:center; padding:10px 8px; border-radius:14px;
+  background:#ffffff14; border:1px solid #ffffff24; color:var(--snow); backdrop-filter:blur(3px);
+}
+.stat b{display:block; font-family:"Mountains of Christmas",Georgia,serif; font-size:1.9rem; line-height:1; color:var(--gold)}
+.stat span{font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:#cfe8d8}
+.bar{height:10px; border-radius:99px; background:#ffffff1f; overflow:hidden; margin:0 0 18px}
+.bar div{
+  height:100%; width:0; border-radius:99px; transition:width .5s ease;
+  background:repeating-linear-gradient(45deg,var(--berry) 0 10px,var(--snow) 10px 20px);
+}
+.pick{
+  width:100%; border:0; cursor:pointer; padding:14px 16px; border-radius:14px; margin-bottom:18px;
+  font:600 1rem Inter,system-ui,sans-serif; color:#3a2a00;
+  background:linear-gradient(180deg,#ffd964,var(--gold)); box-shadow:0 4px 0 #b8901c, 0 10px 20px #0004;
+}
+.pick:active{transform:translateY(2px); box-shadow:0 2px 0 #b8901c}
+#tonight{
+  display:none; margin:-4px 0 18px; padding:14px 16px; border-radius:14px; text-align:center;
+  background:var(--snow); border:2px dashed var(--berry); color:var(--ink);
+}
+#tonight small{display:block; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; font-size:.7rem}
+#tonight strong{font-family:"Mountains of Christmas",Georgia,serif; font-size:1.6rem; color:var(--berry)}
+h2{
+  font-family:"Mountains of Christmas",Georgia,serif; font-size:1.5rem; margin:22px 0 10px;
+  color:var(--snow); display:flex; align-items:center; gap:8px;
+}
+ul{list-style:none; margin:0; padding:0; display:grid; gap:8px}
+li{
+  display:flex; align-items:center; gap:12px; padding:12px 14px; min-height:52px;
+  background:var(--card); border-radius:14px; box-shadow:0 2px 0 #00000026, 0 8px 18px #0003;
+  border-left:6px solid var(--berry);
+}
+li:nth-child(even){border-left-color:var(--pine-3)}
+li.done{opacity:.72}
+li.done .t{text-decoration:line-through; color:var(--muted)}
+li.just{animation:pop .5s ease}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.04)}100%{transform:scale(1)}}
+.chk{
+  appearance:none; -webkit-appearance:none; flex:none; width:28px; height:28px; margin:0; cursor:pointer;
+  border:2.5px solid var(--berry); border-radius:50%; background:#fff; display:grid; place-content:center;
+}
+.chk::after{content:"🎄"; font-size:15px; transform:scale(0); transition:transform .18s}
+.chk:checked{background:var(--pine-3); border-color:var(--pine-3)}
+.chk:checked::after{transform:scale(1)}
+.chk:focus-visible{outline:3px solid var(--gold); outline-offset:2px}
+.t{flex:1; min-width:0; overflow-wrap:anywhere; font-weight:600}
+.t em{display:block; font-style:normal; font-weight:400; font-size:.78rem; color:var(--muted)}
+.rm{
+  flex:none; border:0; background:none; cursor:pointer; color:#a0a8a3; font-size:1.2rem;
+  width:36px; height:36px; border-radius:8px;
+}
+.rm:hover{color:var(--berry); background:#c0272d14}
+form{display:flex; gap:8px; margin-top:16px}
+input[type=text]{
+  flex:1; min-width:0; padding:14px; font:inherit; border-radius:12px; border:2px solid #ffffff30;
+  background:#ffffffee; color:var(--ink);
+}
+input[type=text]:focus{outline:3px solid var(--gold); border-color:var(--gold)}
+form button{
+  flex:none; padding:0 18px; border:0; border-radius:12px; cursor:pointer; font:600 1rem Inter,sans-serif;
+  color:#fff; background:var(--berry); box-shadow:0 3px 0 #8e1b20;
+}
+.foot{margin-top:28px; text-align:center; color:#a9cdb8; font-size:.78rem}
+.foot button{background:none; border:0; color:#cfe8d8; text-decoration:underline; cursor:pointer; font:inherit}
+</style>
+</head>
+<body>
+<canvas id="snow" aria-hidden="true"></canvas>
+<div class="lights" id="lights" aria-hidden="true"></div>
+<main>
+  <a class="back" href="../">← Bill's Books</a>
+  <h1>Christmas Watchlist</h1>
+  <p class="sub">2026 · movies &amp; episodes to get through before the big day</p>
+
+  <div class="stats">
+    <div class="stat"><b id="sDays">–</b><span>Days to Christmas</span></div>
+    <div class="stat"><b id="sDone">0</b><span>Watched</span></div>
+    <div class="stat"><b id="sLeft">0</b><span>Still to go</span></div>
+  </div>
+  <div class="bar" role="progressbar" aria-label="Watched progress" aria-valuemin="0" aria-valuemax="100" id="bar"><div></div></div>
+
+  <button class="pick" id="pick" type="button">🎁 Pick tonight's movie for me</button>
+  <div id="tonight" role="status" aria-live="polite"></div>
+
+  <h2>🌟 To Watch</h2>
+  <ul id="todo"></ul>
+
+  <h2>🎅 Already Watched</h2>
+  <ul id="done"></ul>
+
+  <form id="add" autocomplete="off">
+    <input type="text" id="newTitle" placeholder="Add a Christmas movie…" aria-label="Add a Christmas movie" maxlength="120">
+    <button type="submit">Add</button>
+  </form>
+
+  <p class="foot">Checkmarks and additions save on this device. <button type="button" id="reset">Reset to the starting list</button></p>
+</main>
+
+<script>
+// Starting list. Edit here (or ask Claude) to change what everyone sees by default.
+const START = [
+  { id:'tl-s2e4',  title:'Ted Lasso, Season 2, Episode 4 — "Carol of the Bells"', note:'Episode' },
+  { id:'the-ref',  title:'The Ref' },
+  { id:'miller',   title:"Christmas Eve in Miller's Point" },
+  { id:'pageant',  title:'Best Christmas Pageant Ever' },
+  { id:'klaus',    title:'Klaus' },
+  { id:'night',    title:'The Night Before' },
+  { id:'happiest', title:'Happiest Season' },
+  { id:'actually', title:'Love Actually' },
+  { id:'badsanta', title:'Bad Santa' },
+  { id:'lampoon',  title:"National Lampoon's Christmas Vacation", done:true },
+  { id:'dearsanta',title:'Dear Santa', done:true }
+];
+const KEY = 'christmas-2026-v1';
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function load(){
+  try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && Array.isArray(s.items)) return s; } catch(e){}
+  return { items: START.map(x => ({...x})) };
+}
+let state = load();
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+
+function row(it, justId){
+  const note = it.note ? `<em>${esc(it.note)}</em>` : '';
+  const rm = it.custom ? `<button class="rm" data-rm="${it.id}" aria-label="Remove ${esc(it.title)}">✕</button>` : '';
+  return `<li class="${it.done?'done':''}${it.id===justId?' just':''}">
+    <input class="chk" type="checkbox" data-id="${it.id}" ${it.done?'checked':''} aria-label="Watched: ${esc(it.title)}">
+    <span class="t">${esc(it.title)}${note}</span>${rm}</li>`;
+}
+function render(justId){
+  const todo = state.items.filter(i => !i.done), done = state.items.filter(i => i.done);
+  $('todo').innerHTML = todo.map(i => row(i, justId)).join('') || '<li><span class="t">All watched — now go enjoy Christmas! 🎄</span></li>';
+  $('done').innerHTML = done.map(i => row(i, justId)).join('') || '<li><span class="t" style="color:var(--muted)">Nothing yet — pick one!</span></li>';
+  const pct = state.items.length ? Math.round(done.length / state.items.length * 100) : 0;
+  $('sDone').textContent = done.length; $('sLeft').textContent = todo.length;
+  $('bar').firstElementChild.style.width = pct + '%'; $('bar').setAttribute('aria-valuenow', pct);
+}
+
+document.addEventListener('change', e => {
+  const id = e.target.dataset && e.target.dataset.id; if (!id) return;
+  const it = state.items.find(i => i.id === id); if (!it) return;
+  it.done = e.target.checked; save(); render(id);
+});
+document.addEventListener('click', e => {
+  const id = e.target.dataset && e.target.dataset.rm; if (!id) return;
+  state.items = state.items.filter(i => i.id !== id); save(); render();
+});
+$('add').addEventListener('submit', e => {
+  e.preventDefault();
+  const t = $('newTitle').value.trim(); if (!t) return;
+  state.items.push({ id:'c' + Date.now(), title:t, custom:true }); save();
+  $('newTitle').value = ''; render();
+});
+$('pick').addEventListener('click', () => {
+  const todo = state.items.filter(i => !i.done), box = $('tonight');
+  box.style.display = 'block';
+  box.innerHTML = todo.length
+    ? `<small>Tonight's pick</small><strong>${esc(todo[Math.floor(Math.random()*todo.length)].title)}</strong>`
+    : `<strong>Nothing left — you did it! 🎅</strong>`;
+});
+$('reset').addEventListener('click', () => {
+  if (confirm('Reset to the starting list? Your checkmarks and additions will be cleared.')) {
+    state = { items: START.map(x => ({...x})) }; save(); render(); $('tonight').style.display = 'none';
+  }
+});
+
+// Days to Christmas (local time); on/after Dec 25 counts the next one.
+(function(){
+  const n = new Date(), y = n.getFullYear();
+  let x = new Date(y, 11, 25);
+  const today = new Date(y, n.getMonth(), n.getDate());
+  if (today > x) x = new Date(y + 1, 11, 25);
+  const d = Math.round((x - today) / 86400000);
+  $('sDays').textContent = d === 0 ? '🎄' : d;
+})();
+
+// String of lights
+(function(){
+  const cols = ['#e23a41','#f5c542','#3ddc84','#4aa8ff','#ff8a3d'];
+  const n = Math.max(10, Math.floor(innerWidth / 38));
+  $('lights').innerHTML = Array.from({length:n}, (_, i) =>
+    `<i style="--c:${cols[i % cols.length]};--d:${(i % 5) * .4}s"></i>`).join('');
+})();
+
+// Snowfall
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const c = $('snow'), g = c.getContext('2d'); let w, h, flakes = [];
+  const size = () => { w = c.width = innerWidth; h = c.height = innerHeight; };
+  size(); addEventListener('resize', size);
+  const N = innerWidth < 600 ? 45 : 90;
+  for (let i = 0; i < N; i++) flakes.push({ x:Math.random()*w, y:Math.random()*h, r:1+Math.random()*3, v:.4+Math.random()*1.1, s:Math.random()*Math.PI*2 });
+  (function tick(){
+    g.clearRect(0, 0, w, h); g.fillStyle = 'rgba(255,255,255,.85)';
+    for (const f of flakes) {
+      f.y += f.v; f.s += .01; f.x += Math.sin(f.s) * .4;
+      if (f.y > h + 5) { f.y = -5; f.x = Math.random() * w; }
+      g.beginPath(); g.arc(f.x, f.y, f.r, 0, 7); g.fill();
+    }
+    requestAnimationFrame(tick);
+  })();
+})();
+
+render();
+</script>
+</body>
+</html>
