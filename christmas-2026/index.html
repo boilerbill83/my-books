@@ -47,6 +47,8 @@ h1{
   font-size:clamp(2.4rem,10vw,3.6rem); line-height:1.05; margin:8px 0 4px; text-align:center;
   color:var(--snow); text-shadow:0 3px 0 var(--berry), 0 8px 24px #0006;
 }
+.hero{margin:0 auto 18px;max-width:420px;padding:8px;border-radius:20px;background:linear-gradient(135deg,var(--gold),var(--berry) 50%,var(--gold));box-shadow:0 0 28px rgba(245,197,66,.45),0 8px 24px rgba(0,0,0,.4)}
+.hero img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 35%;border-radius:13px}
 .sub{text-align:center; color:#d8efe0; margin:0 0 18px}
 .stats{display:flex; gap:10px; margin-bottom:16px}
 .stat{
@@ -121,6 +123,7 @@ form button{
 <div class="lights" id="lights" aria-hidden="true"></div>
 <main>
   <a class="back" href="../">← Bill's Books</a>
+  <div class="hero"><img src="family.jpg" alt="Family watching a Christmas movie by the fireplace" loading="eager"></div>
   <h1>Christmas Watchlist</h1>
   <p class="sub">2026 · movies &amp; episodes to get through before the big day</p>
 
