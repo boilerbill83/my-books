@@ -118,10 +118,17 @@ form button{
 .foot button{background:none; border:0; color:#cfe8d8; text-decoration:underline; cursor:pointer; font:inherit}
 #idea{display:none;margin:10px 0 0;padding:16px;border-radius:16px;background:rgba(255,253,247,.1);border:2px dashed var(--gold);text-align:center}
 #idea small{display:block;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;font-size:.75rem}
-#idea strong{display:block;font-size:1.3rem;margin:4px 0 12px}
+#idea strong{display:block;color:var(--snow);font-size:1.3rem;margin:4px 0 12px}
 #idea button{font:inherit;font-weight:700;border:0;border-radius:999px;padding:10px 16px;margin:4px;cursor:pointer;min-height:44px}
 #idea .yes{background:var(--gold);color:#3b2a00}#idea .no{background:rgba(255,255,255,.18);color:var(--snow)}
 .pick.alt{background:linear-gradient(180deg,#e23a41,var(--berry));color:#fff;margin-top:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0 0}
+.chips button{font:inherit;font-weight:700;border:2px solid var(--gold);background:rgba(255,253,247,.1);color:var(--snow);border-radius:999px;padding:8px 14px;min-height:44px;cursor:pointer;transition:transform .15s}
+.chips button:active{transform:scale(.94)}
+.chips button.on{background:var(--gold);color:#3b2a00;transform:scale(1.05)}
+#idea .emo{font-size:2.6rem;display:block;animation:pop .5s}
+@keyframes pop{0%{transform:scale(.3) rotate(-20deg)}70%{transform:scale(1.25) rotate(8deg)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){#idea .emo{animation:none}}
 </style>
 </head>
 <body>
@@ -143,7 +150,8 @@ form button{
   <button class="pick" id="pick" type="button">🎁 Pick tonight's movie for me</button>
   <div id="tonight" role="status" aria-live="polite"></div>
 
-  <button class="pick alt" id="ideaBtn" type="button">✨ Not on the list? Surprise me</button>
+  <button class="pick alt" id="ideaBtn" type="button">✨ Not on the list? Pick a type & surprise us</button>
+  <div class="chips" id="chips" role="group" aria-label="Pick a type of movie"></div>
   <div id="idea" role="status" aria-live="polite"></div>
 
   <h2>🌟 To Watch</h2>
@@ -267,20 +275,46 @@ $('reset').addEventListener('click', () => {
   })();
 })();
 
-// Ideas pool for "Surprise me" — anything not already on the list.
-const IDEAS = ['Elf','Home Alone','Home Alone 2: Lost in New York','The Polar Express','A Christmas Story','How the Grinch Stole Christmas (2000)','The Grinch (2018)','Jingle All the Way','The Santa Clause','The Santa Clause 2','Deck the Halls','Fred Claus','Arthur Christmas','Four Christmases','The Holiday','Surviving Christmas','Christmas with the Kranks','Jack Frost','Noelle','Spirited','Violent Night','Last Christmas','The Christmas Chronicles','The Christmas Chronicles 2','Single All the Way','Red One','Nativity!','Scrooged','Die Hard','Lethal Weapon','Gremlins','Krampus','Fatman','Carol','The Family Stone','Office Christmas Party','Christmas in Connecticut','It\'s a Wonderful Life','Miracle on 34th Street','White Christmas','Holiday Inn','The Muppet Christmas Carol','A Christmas Carol (2009)','Rise of the Guardians','Klaus','Eight Crazy Nights','Almost Christmas','Jingle Jangle: A Christmas Journey','Hot Frosty','The Man Who Invented Christmas','Prancer','Mixed Nuts','Trading Places','Batman Returns','Tokyo Godfathers','The Nightmare Before Christmas','Ernest Saves Christmas','Get Santa','Dashing Through the Snow','The Christmas Candle','Daddy\'s Home 2'];
-let curIdea = null;
+// Ideas by type. "grown" = for the grown-ups (PG-13/R) and never shows up under the kid types.
+const TYPES = {
+  any:   { label:'🎲 Anything!',        emoji:'🎲' },
+  funny: { label:'😂 Silly & Funny',    emoji:'😂', list:['Elf','Home Alone','Home Alone 2: Lost in New York','Jingle All the Way','Fred Claus','Christmas with the Kranks','Deck the Halls','Ernest Saves Christmas','The Santa Clause','The Santa Clause 2','Get Santa','Nativity!','Daddy\'s Home 2','Eight Crazy Nights','A Christmas Story'] },
+  cartoon:{label:'🎨 Cartoons',         emoji:'🎨', list:['The Grinch (2018)','Arthur Christmas','Rise of the Guardians','Klaus','The Polar Express','The Nightmare Before Christmas','Rudolph the Red-Nosed Reindeer','Frosty the Snowman','Elf: Buddy\'s Musical Christmas','The Snowman','Olaf\'s Frozen Adventure','Mickey\'s Christmas Carol','Shrek the Halls','Prep & Landing','Tokyo Godfathers'] },
+  magic: { label:'🧝 Magic & Santa',    emoji:'🎅', list:['The Santa Clause','The Christmas Chronicles','The Christmas Chronicles 2','Noelle','Arthur Christmas','Prancer','Jack Frost','Fred Claus','Miracle on 34th Street','Rise of the Guardians','Red One','The Polar Express','Get Santa','Jingle Jangle: A Christmas Journey'] },
+  music: { label:'🎶 Musicals & Songs', emoji:'🎶', list:['Spirited','The Muppet Christmas Carol','White Christmas','Holiday Inn','Jingle Jangle: A Christmas Journey','The Polar Express','Klaus','Elf: Buddy\'s Musical Christmas','Annie','The Nightmare Before Christmas','Muppets Most Wanted'] },
+  cozy:  { label:'🫶 Cozy & Heartwarming', emoji:'🫶', list:['It\'s a Wonderful Life','Miracle on 34th Street','The Holiday','The Family Stone','Almost Christmas','The Man Who Invented Christmas','The Christmas Candle','Prancer','Klaus','Noelle','Single All the Way','Hot Frosty','A Charlie Brown Christmas','Home Alone'] },
+  spooky:{ label:'🎃 A Little Spooky',  emoji:'👻', list:['The Nightmare Before Christmas','Gremlins','Krampus','Jack Skellington\'s Christmas','Scrooged','The Christmas Chronicles'] },
+  grown: { label:'🙈 Grown-ups Only',   emoji:'🙈', grown:true, list:['Die Hard','Lethal Weapon','Violent Night','Fatman','Krampus','Gremlins','Trading Places','Four Christmases','Office Christmas Party','Last Christmas','Surviving Christmas','Batman Returns','Mixed Nuts','Dashing Through the Snow','Carol'] }
+};
+const KIDSAFE_EXCLUDE = new Set(TYPES.grown.list.map(t=>t.toLowerCase()));
+let curType = 'any', curIdea = null;
 const norm = t => t.toLowerCase().replace(/[^a-z0-9]/g,'');
+function poolFor(type){
+  let l;
+  if (type === 'any') l = [...new Set(Object.values(TYPES).filter(t=>t.list&&!t.grown).flatMap(t=>t.list))];
+  else l = TYPES[type].list.slice();
+  if (type !== 'grown') l = l.filter(t => !KIDSAFE_EXCLUDE.has(t.toLowerCase()) || ['The Nightmare Before Christmas'].includes(t));
+  return l;
+}
+function renderChips(){
+  $('chips').innerHTML = Object.entries(TYPES).map(([k,v]) =>
+    `<button type="button" data-type="${k}" class="${k===curType?'on':''}" aria-pressed="${k===curType}">${v.label}</button>`).join('');
+}
 function nextIdea(){
   const have = state.items.map(i => norm(i.title));
-  const pool = IDEAS.filter(t => !have.some(h => h.includes(norm(t)) || norm(t).includes(h)) && t !== curIdea);
+  const pool = poolFor(curType).filter(t => !have.some(h => h.includes(norm(t)) || norm(t).includes(h)) && t !== curIdea);
   const box = $('idea'); box.style.display = 'block';
-  if (!pool.length) { curIdea = null; box.innerHTML = '<strong>You\'ve got them all! 🎄</strong>'; return; }
+  if (!pool.length) { curIdea = null; box.innerHTML = '<span class="emo">🎄</span><strong>No more in this pile — try another type!</strong>'; return; }
   curIdea = pool[Math.floor(Math.random()*pool.length)];
-  box.innerHTML = `<small>How about…</small><strong>${esc(curIdea)}</strong>
+  box.innerHTML = `<span class="emo">${TYPES[curType].emoji}</span><small>How about…</small><strong>${esc(curIdea)}</strong>
     <button class="yes" type="button" id="ideaAdd">➕ Add to list</button>
     <button class="no" type="button" id="ideaNext">🔄 Another</button>`;
 }
+$('chips').addEventListener('click', e => {
+  const k = e.target.dataset && e.target.dataset.type; if (!k) return;
+  curType = k; curIdea = null; renderChips(); nextIdea();
+});
+renderChips();
 $('ideaBtn').addEventListener('click', nextIdea);
 $('idea').addEventListener('click', e => {
   if (e.target.id === 'ideaNext') nextIdea();
