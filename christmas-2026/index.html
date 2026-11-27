@@ -116,6 +116,12 @@ form button{
 }
 .foot{margin-top:28px; text-align:center; color:#a9cdb8; font-size:.78rem}
 .foot button{background:none; border:0; color:#cfe8d8; text-decoration:underline; cursor:pointer; font:inherit}
+#idea{display:none;margin:10px 0 0;padding:16px;border-radius:16px;background:rgba(255,253,247,.1);border:2px dashed var(--gold);text-align:center}
+#idea small{display:block;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;font-size:.75rem}
+#idea strong{display:block;font-size:1.3rem;margin:4px 0 12px}
+#idea button{font:inherit;font-weight:700;border:0;border-radius:999px;padding:10px 16px;margin:4px;cursor:pointer;min-height:44px}
+#idea .yes{background:var(--gold);color:#3b2a00}#idea .no{background:rgba(255,255,255,.18);color:var(--snow)}
+.pick.alt{background:linear-gradient(180deg,#e23a41,var(--berry));color:#fff;margin-top:10px}
 </style>
 </head>
 <body>
@@ -136,6 +142,9 @@ form button{
 
   <button class="pick" id="pick" type="button">🎁 Pick tonight's movie for me</button>
   <div id="tonight" role="status" aria-live="polite"></div>
+
+  <button class="pick alt" id="ideaBtn" type="button">✨ Not on the list? Surprise me</button>
+  <div id="idea" role="status" aria-live="polite"></div>
 
   <h2>🌟 To Watch</h2>
   <ul id="todo"></ul>
@@ -257,6 +266,29 @@ $('reset').addEventListener('click', () => {
     requestAnimationFrame(tick);
   })();
 })();
+
+// Ideas pool for "Surprise me" — anything not already on the list.
+const IDEAS = ['Elf','Home Alone','Home Alone 2: Lost in New York','The Polar Express','A Christmas Story','How the Grinch Stole Christmas (2000)','The Grinch (2018)','Jingle All the Way','The Santa Clause','The Santa Clause 2','Deck the Halls','Fred Claus','Arthur Christmas','Four Christmases','The Holiday','Surviving Christmas','Christmas with the Kranks','Jack Frost','Noelle','Spirited','Violent Night','Last Christmas','The Christmas Chronicles','The Christmas Chronicles 2','Single All the Way','Red One','Nativity!','Scrooged','Die Hard','Lethal Weapon','Gremlins','Krampus','Fatman','Carol','The Family Stone','Office Christmas Party','Christmas in Connecticut','It\'s a Wonderful Life','Miracle on 34th Street','White Christmas','Holiday Inn','The Muppet Christmas Carol','A Christmas Carol (2009)','Rise of the Guardians','Klaus','Eight Crazy Nights','Almost Christmas','Jingle Jangle: A Christmas Journey','Hot Frosty','The Man Who Invented Christmas','Prancer','Mixed Nuts','Trading Places','Batman Returns','Tokyo Godfathers','The Nightmare Before Christmas','Ernest Saves Christmas','Get Santa','Dashing Through the Snow','The Christmas Candle','Daddy\'s Home 2'];
+let curIdea = null;
+const norm = t => t.toLowerCase().replace(/[^a-z0-9]/g,'');
+function nextIdea(){
+  const have = state.items.map(i => norm(i.title));
+  const pool = IDEAS.filter(t => !have.some(h => h.includes(norm(t)) || norm(t).includes(h)) && t !== curIdea);
+  const box = $('idea'); box.style.display = 'block';
+  if (!pool.length) { curIdea = null; box.innerHTML = '<strong>You\'ve got them all! 🎄</strong>'; return; }
+  curIdea = pool[Math.floor(Math.random()*pool.length)];
+  box.innerHTML = `<small>How about…</small><strong>${esc(curIdea)}</strong>
+    <button class="yes" type="button" id="ideaAdd">➕ Add to list</button>
+    <button class="no" type="button" id="ideaNext">🔄 Another</button>`;
+}
+$('ideaBtn').addEventListener('click', nextIdea);
+$('idea').addEventListener('click', e => {
+  if (e.target.id === 'ideaNext') nextIdea();
+  if (e.target.id === 'ideaAdd' && curIdea) {
+    state.items.push({ id:'c' + Date.now(), title:curIdea, custom:true }); save(); render();
+    $('idea').innerHTML = `<strong>Added ${esc(curIdea)}! 🎁</strong><button class="no" type="button" id="ideaNext">🔄 Another</button>`; curIdea = null;
+  }
+});
 
 render();
 </script>
