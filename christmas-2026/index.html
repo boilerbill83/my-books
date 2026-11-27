@@ -208,15 +208,29 @@ const START = [
   { id:'actually', title:'Love Actually' },
   { id:'badsanta', title:'Bad Santa' },
   { id:'lampoon',  title:"National Lampoon's Christmas Vacation", done:true },
-  { id:'dearsanta',title:'Dear Santa', done:true }
+  { id:'dearsanta',title:'Dear Santa', done:true },
+  { id:'homealone',title:'Home Alone', done:true }
 ];
 const KEY = 'christmas-2026-v1';
 const $ = id => document.getElementById(id);
 const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 function load(){
-  try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && Array.isArray(s.items)) return s; } catch(e){}
-  return { items: START.map(x => ({...x})) };
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY));
+    if (s && Array.isArray(s.items)) {
+      // Pick up starting-list items added after this device first saved (never re-adds ones you removed).
+      const seen = new Set(s.seen || START.slice(0, 10).map(x => x.id));
+      for (const x of START) {
+        if (seen.has(x.id)) continue;
+        const dup = s.items.find(i => i.title.toLowerCase() === x.title.toLowerCase());
+        if (dup) { if (x.done) dup.done = true; } else s.items.push({...x});
+        seen.add(x.id);
+      }
+      s.seen = [...seen]; return s;
+    }
+  } catch(e){}
+  return { items: START.map(x => ({...x})), seen: START.map(x => x.id) };
 }
 let state = load();
 function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
@@ -261,7 +275,7 @@ $('pick').addEventListener('click', () => {
 });
 $('reset').addEventListener('click', () => {
   if (confirm('Reset to the starting list? Your checkmarks and additions will be cleared.')) {
-    state = { items: START.map(x => ({...x})) }; save(); render(); $('tonight').style.display = 'none';
+    state = { items: START.map(x => ({...x})), seen: START.map(x => x.id) }; save(); render(); $('tonight').style.display = 'none';
   }
 });
 
