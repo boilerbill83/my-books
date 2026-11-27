@@ -41182,5 +41182,95 @@
   "director": "Andy Tennant",
   "rated": "PG",
   "fetchedAt": "2026-11-16"
+ },
+ "show:211288": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 4,
+   "totalNominations": 7,
+   "raw": "4 wins & 7 nominations total"
+  },
+  "imdbRating": 7.2,
+  "imdbVotes": 31529,
+  "director": null,
+  "rated": "TV-14",
+  "fetchedAt": "2026-11-23"
+ },
+ "movie:1307373": {
+  "rottenTomatoes": null,
+  "metacritic": 76,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 8,
+   "raw": "Nominated for 1 BAFTA Award. 1 win & 8 nominations total"
+  },
+  "imdbRating": 7.2,
+  "imdbVotes": 9967,
+  "director": "Cal McMau",
+  "rated": "Not Rated",
+  "fetchedAt": "2026-11-23"
+ },
+ "movie:1300968": {
+  "rottenTomatoes": null,
+  "metacritic": 56,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 3,
+   "raw": "1 win & 3 nominations total"
+  },
+  "imdbRating": 7.6,
+  "imdbVotes": 22802,
+  "director": "Francis Lawrence",
+  "rated": "PG-13",
+  "fetchedAt": "2026-11-23"
+ },
+ "movie:472674": {
+  "rottenTomatoes": null,
+  "metacritic": 40,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 3,
+   "raw": "3 nominations total"
+  },
+  "imdbRating": 6.4,
+  "imdbVotes": 30534,
+  "director": "John Crowley",
+  "rated": "R",
+  "fetchedAt": "2026-11-23"
+ },
+ "show:131651": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 1,
+   "raw": "1 nomination total"
+  },
+  "imdbRating": 7.9,
+  "imdbVotes": 13519,
+  "director": null,
+  "rated": "TV-14",
+  "fetchedAt": "2026-11-23"
  }
 }
