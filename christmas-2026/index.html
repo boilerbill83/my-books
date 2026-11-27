@@ -129,11 +129,35 @@ form button{
 #idea .emo{font-size:2.6rem;display:block;animation:pop .5s}
 @keyframes pop{0%{transform:scale(.3) rotate(-20deg)}70%{transform:scale(1.25) rotate(8deg)}100%{transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){#idea .emo{animation:none}}
+
+.sleigh{position:fixed;top:30px;left:-160px;font-size:1.7rem;white-space:nowrap;pointer-events:none;z-index:3;animation:fly 22s linear infinite 3s}
+@keyframes fly{0%{left:-160px;transform:translateY(0)}25%{transform:translateY(10px)}50%{transform:translateY(-4px)}75%{transform:translateY(8px)}100%{left:105vw;transform:translateY(0)}}
+.pick.vote{background:linear-gradient(180deg,#3ddc84,#1f9d57);color:#06331a;margin-top:10px}
+#vote{display:none;margin:12px 0 0;padding:16px;border-radius:18px;background:rgba(255,253,247,.1);border:2px solid var(--gold)}
+#vote h3{margin:0 0 6px;text-align:center;font-size:1.3rem;color:var(--gold)}
+#vote p{margin:6px 0;text-align:center;color:#d8efe0;font-size:.95rem}
+#vote .opt{display:flex;align-items:center;gap:12px;width:100%;margin:8px 0;padding:14px;border-radius:16px;border:3px solid transparent;background:rgba(255,253,247,.14);color:var(--snow);font:inherit;font-weight:700;font-size:1.05rem;text-align:left;cursor:pointer;min-height:64px}
+#vote .opt .big{font-size:2.2rem}
+#vote .opt.sel{border-color:var(--gold);background:rgba(245,197,66,.25);transform:scale(1.02)}
+#vote .row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0}
+#vote .row button,#vote .go{font:inherit;font-weight:700;border:0;border-radius:999px;padding:10px 16px;min-height:44px;cursor:pointer;background:var(--gold);color:#3b2a00}
+#vote .row button.alt,#vote .go.alt{background:rgba(255,255,255,.18);color:var(--snow)}
+#vote .row button.av{font-size:1.6rem;padding:6px 10px;background:rgba(255,255,255,.15)}
+#vote .row button.av.on{background:var(--gold)}
+#vote input[type=text]{width:100%;font:inherit;padding:12px;border-radius:12px;border:2px solid var(--gold);background:var(--snow);color:#222;box-sizing:border-box}
+#vote .bar2{height:16px;border-radius:8px;background:rgba(255,255,255,.15);overflow:hidden;margin:4px 0}
+#vote .bar2 i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--berry));transition:width .5s}
+#vote .win{margin:12px 0;padding:14px;border-radius:16px;background:var(--gold);color:#3b2a00;text-align:center;font-weight:800;font-size:1.2rem}
+#vote .tl{font-weight:700;color:var(--snow);margin-top:10px}
+.cf{position:fixed;top:-30px;font-size:1.8rem;pointer-events:none;z-index:9;animation:fall 2.4s ease-in forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:.9}}
+@media (prefers-reduced-motion:reduce){.sleigh,.cf{display:none}}
 </style>
 </head>
 <body>
 <canvas id="snow" aria-hidden="true"></canvas>
 <div class="lights" id="lights" aria-hidden="true"></div>
+<div class="sleigh" aria-hidden="true">🦌🦌🦌🛷🎅</div>
 <main>
   <a class="back" href="../">← Bill's Books</a>
   <div class="hero"><img src="family.jpg" alt="Family watching a Christmas movie by the fireplace" loading="eager"></div>
@@ -149,6 +173,9 @@ form button{
 
   <button class="pick" id="pick" type="button">🎁 Pick tonight's movie for me</button>
   <div id="tonight" role="status" aria-live="polite"></div>
+
+  <button class="pick vote" id="voteBtn" type="button">🗳️ Family vote: help us pick!</button>
+  <div id="vote" role="region" aria-label="Family vote" aria-live="polite"></div>
 
   <button class="pick alt" id="ideaBtn" type="button">✨ Not on the list? Pick a type & surprise us</button>
   <div class="chips" id="chips" role="group" aria-label="Pick a type of movie"></div>
@@ -323,6 +350,99 @@ $('idea').addEventListener('click', e => {
     $('idea').innerHTML = `<strong>Added ${esc(curIdea)}! 🎁</strong><button class="no" type="button" id="ideaNext">🔄 Another</button>`; curIdea = null;
   }
 });
+
+// ---------- Family vote (no server: links carry the round and the votes) ----------
+const VKEY='christmas-2026-votes', AVS=['🦌','🎅','🤶','🧝','⛄','🐻','🎄','⭐'];
+const EMO=['🎅','🦌','⛄','🎄','⭐','🎁','🔔','🍪','🧝','❄️','🛷','🍫'];
+const emo=t=>EMO[[...t].reduce((a,c)=>a+c.charCodeAt(0),0)%EMO.length];
+const b64e=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+const b64d=x=>{try{return JSON.parse(decodeURIComponent(escape(atob(x.replace(/-/g,'+').replace(/_/g,'/')))))}catch(e){return null}};
+const vload=()=>{try{return JSON.parse(localStorage.getItem(VKEY))||{}}catch(e){return{}}};
+const vsave=v=>{try{localStorage.setItem(VKEY,JSON.stringify(v))}catch(e){}};
+let me={n:'',a:'🦌'}; try{me=Object.assign(me,JSON.parse(localStorage.getItem('christmas-2026-me')))}catch(e){}
+const saveMe=()=>{try{localStorage.setItem('christmas-2026-me',JSON.stringify(me))}catch(e){}};
+let V={id:null,view:'',pick:-1,sent:''};
+const base=()=>location.href.split('#')[0];
+function burst(list){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  for(let i=0;i<26;i++){const e=document.createElement('span');e.className='cf';e.textContent=list[i%list.length];
+    e.style.left=Math.random()*96+'vw';e.style.animationDelay=Math.random()*.8+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),3500);}
+}
+function startRound(){
+  const todo=state.items.filter(i=>!i.done).map(i=>i.title).sort(()=>Math.random()-.5).slice(0,3);
+  const box=$('vote');box.style.display='block';
+  if(todo.length<2){box.innerHTML='<h3>Need at least 2 movies on the To Watch list!</h3>';return;}
+  const id=Date.now().toString(36), v=vload(); v[id]={o:todo,votes:{},mine:true}; vsave(v);
+  V={id,view:'share',pick:-1,sent:''}; renderVote();
+}
+function renderVote(){
+  const box=$('vote'); box.style.display='block'; const v=vload(), r=v[V.id]; if(!r) return;
+  const opts=r.o.map(t=>`${emo(t)} ${esc(t)}`);
+  let h='';
+  if(V.view==='share'){
+    const link=base()+'#r='+b64e({id:V.id,o:r.o});
+    h=`<h3>🗳️ Tonight's 3 choices</h3>`+r.o.map(t=>`<p style="font-size:1.1rem;color:var(--snow)">${emo(t)} <b>${esc(t)}</b></p>`).join('')+
+      `<p>Send this link to everyone. Each person votes on their own phone.</p>
+       <div class="row"><button type="button" id="vShare">📤 Share link</button><button class="alt" type="button" id="vVoteMe">🗳️ I'll vote too</button><button class="alt" type="button" id="vTally">📊 See tally</button></div>`;
+    V.link=link;
+  } else if(V.view==='ballot'){
+    h=`<h3>🎄 Cast your vote!</h3>
+      <input type="text" id="vName" placeholder="Your name" maxlength="20" value="${esc(me.n)}" aria-label="Your name">
+      <div class="row" id="vAv">${AVS.map(a=>`<button type="button" class="av ${a===me.a?'on':''}" data-av="${a}" aria-label="Avatar ${a}">${a}</button>`).join('')}</div>`+
+      r.o.map((t,i)=>`<button type="button" class="opt ${V.pick===i?'sel':''}" data-i="${i}"><span class="big">${emo(t)}</span><span>${esc(t)}</span></button>`).join('')+
+      `<div class="row"><button class="go" type="button" id="vSend" ${V.pick<0?'disabled style="opacity:.5"':''}>✅ Lock in my vote</button></div>`;
+  } else if(V.view==='sent'){
+    h=`<h3>🎉 Vote locked in!</h3>`+(r.mine?`<p>Counted on this phone.</p>`:`<p>Now send your vote back to whoever shared the link. Tap below, then send it in the family chat.</p><div class="row"><button type="button" id="vShareVote">📤 Send my vote</button></div>`)+
+      `<div class="row"><button class="alt" type="button" id="vTally">📊 See tally</button></div>`;
+  } else {
+    const n=r.o.map(()=>0); const names=r.o.map(()=>[]);
+    Object.entries(r.votes).forEach(([k,x])=>{if(n[x.i]!==undefined){n[x.i]++;names[x.i].push(x.a+' '+esc(k));}});
+    const total=n.reduce((a,b)=>a+b,0), max=Math.max(0,...n);
+    h=`<h3>📊 Vote tally</h3>`+r.o.map((t,i)=>`<div class="tl">${emo(t)} ${esc(t)} — ${n[i]}</div><div class="bar2"><i style="width:${total?n[i]/total*100:0}%"></i></div><p style="text-align:left;margin:0">${names[i].join(' · ')}</p>`).join('');
+    let lead=[];
+    if(total){lead=r.o.map((t,i)=>i).filter(i=>n[i]===max);
+      h+= lead.length===1?`<div class="win">🏆 Tonight: ${esc(r.o[lead[0]])}!</div>`:`<div class="win">It's a tie! 🎲 <button class="go" type="button" id="vTie" style="margin-left:6px">Break the tie</button></div>`;}
+    else h+='<p>No votes yet. Votes from family links are added when you open them on this phone.</p>';
+    h+=`<div class="row"><button class="alt" type="button" id="vTally">🔄 Refresh</button>${r.mine?`<button class="alt" type="button" id="vLink">🔗 Show share link</button>`:''}<button type="button" id="vNew">🆕 New vote</button></div>`;
+    if(total && lead.length===1 && V.celebrate!==V.id+total){V.celebrate=V.id+total;burst(['🎄','⭐','🎁','🎅','❄️']);}
+  }
+  box.innerHTML=h;
+}
+$('voteBtn').addEventListener('click',startRound);
+$('vote').addEventListener('click',async e=>{
+  const t=e.target.closest('button'); if(!t) return; const v=vload(), r=v[V.id];
+  if(t.dataset.av){me.a=t.dataset.av;saveMe();const n=$('vName');if(n)me.n=n.value.trim();renderVote();return;}
+  if(t.dataset.i!==undefined){const n=$('vName');if(n){me.n=n.value.trim();saveMe();}V.pick=+t.dataset.i;renderVote();return;}
+  switch(t.id){
+    case 'vVoteMe': V.view='ballot';V.pick=-1;renderVote();break;
+    case 'vTally': V.view='tally';renderVote();break;
+    case 'vLink': V.view='share';renderVote();break;
+    case 'vNew': startRound();break;
+    case 'vTie': {const n=r.o.map(()=>0);Object.values(r.votes).forEach(x=>n[x.i]++);const m=Math.max(...n),l=r.o.filter((_,i)=>n[i]===m);
+      const w=l[Math.floor(Math.random()*l.length)];t.parentElement.innerHTML=`🏆 Tiebreaker: ${esc(w)}!`;burst(['🎲','🎄','⭐']);break;}
+    case 'vShare': shareText('Help pick our Christmas movie! Vote here:',V.link);break;
+    case 'vShareVote': shareText('My Christmas movie vote:',V.sent);break;
+    case 'vSend': {
+      const n=$('vName'); me.n=(n.value.trim()||'Someone'); saveMe();
+      if(V.pick<0) return; r.votes[me.n]={a:me.a,i:V.pick}; vsave(v);
+      V.sent=base()+'#v='+b64e({id:V.id,o:r.o,n:me.n,a:me.a,i:V.pick}); V.view='sent'; burst([me.a,'🎄','⭐']); renderVote(); break;}
+  }
+});
+async function shareText(text,url){
+  try{ if(navigator.share){await navigator.share({text,url});return;} }catch(e){ if(e&&e.name==='AbortError') return; }
+  try{ await navigator.clipboard.writeText(url); alert('Link copied! Paste it in your family chat.'); }
+  catch(e){ prompt('Copy this link and send it:',url); }
+}
+function handleHash(){
+  const m=location.hash.match(/^#([rv])=(.+)$/); if(!m) return;
+  const d=b64d(m[2]); if(!d||!d.id||!Array.isArray(d.o)) return;
+  const v=vload(); if(!v[d.id]) v[d.id]={o:d.o.slice(0,3).map(String),votes:{}};
+  if(m[1]==='v'&&typeof d.n==='string'&&Number.isInteger(d.i)&&d.i>=0&&d.i<v[d.id].o.length)
+    v[d.id].votes[d.n.slice(0,20)]={a:String(d.a||'🎄').slice(0,4),i:d.i};
+  vsave(v); V={id:d.id,view:m[1]==='r'?'ballot':'tally',pick:-1,sent:''};
+  history.replaceState(null,'',base()); renderVote(); $('vote').scrollIntoView({behavior:'smooth',block:'start'});
+}
+addEventListener('hashchange',handleHash); handleHash();
 
 render();
 </script>
