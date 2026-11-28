@@ -89,6 +89,9 @@ li.done{opacity:.72}
 li.done .t{text-decoration:line-through; color:var(--muted)}
 li.just{animation:pop .5s ease}
 @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.04)}100%{transform:scale(1)}}
+.mark{flex:none; width:28px; height:28px; display:grid; place-content:center; border:2.5px solid var(--berry); border-radius:50%; background:#fff; font-size:15px}
+li:not(.done) .mark{border-style:dashed; opacity:.5}
+li.done .mark{background:var(--pine-3); border-color:var(--pine-3)}
 .chk{
   appearance:none; -webkit-appearance:none; flex:none; width:28px; height:28px; margin:0; cursor:pointer;
   border:2.5px solid var(--berry); border-radius:50%; background:#fff; display:grid; place-content:center;
@@ -192,11 +195,12 @@ form button{
     <button type="submit">Add</button>
   </form>
 
-  <p class="foot">Checkmarks and additions save on this device. <button type="button" id="reset">Reset to the starting list</button></p>
+  <p class="foot">Movies you add save on this device. <button type="button" id="reset">Clear my additions</button></p>
 </main>
 
 <script>
-// Starting list. Edit here (or ask Claude) to change what everyone sees by default.
+// Starting list. This is the ONLY place a movie gets marked watched (done:true, date:'YYYY-MM-DD').
+// The page has no way to mark anything watched; edit here (or ask Claude).
 const START = [
   { id:'tl-s2e4',  title:'Ted Lasso, Season 2, Episode 4 — "Carol of the Bells"', note:'Episode' },
   { id:'the-ref',  title:'The Ref' },
@@ -208,8 +212,8 @@ const START = [
   { id:'actually', title:'Love Actually' },
   { id:'badsanta', title:'Bad Santa' },
   { id:'lampoon',  title:"National Lampoon's Christmas Vacation", done:true },
-  { id:'dearsanta',title:'Dear Santa', done:true },
-  { id:'homealone',title:'Home Alone', done:true },
+  { id:'dearsanta',title:'Dear Santa', done:true, date:'2026-11-28' },
+  { id:'homealone',title:'Home Alone', done:true, date:'2026-11-22' },
   { id:'xmasstory',title:'A Christmas Story' },
   { id:'homealone2',title:'Home Alone 2: Lost in New York' }
 ];
@@ -217,31 +221,29 @@ const KEY = 'christmas-2026-v1';
 const $ = id => document.getElementById(id);
 const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
+// Watched status comes only from START above. The device only remembers titles added through the page.
 function load(){
+  let custom = [];
   try {
     const s = JSON.parse(localStorage.getItem(KEY));
-    if (s && Array.isArray(s.items)) {
-      // Pick up starting-list items added after this device first saved (never re-adds ones you removed).
-      const seen = new Set(s.seen || START.slice(0, 10).map(x => x.id));
-      for (const x of START) {
-        if (seen.has(x.id)) continue;
-        const dup = s.items.find(i => i.title.toLowerCase() === x.title.toLowerCase());
-        if (dup) { if (x.done) dup.done = true; } else s.items.push({...x});
-        seen.add(x.id);
-      }
-      s.seen = [...seen]; return s;
-    }
+    const saved = s && (Array.isArray(s.custom) ? s.custom : Array.isArray(s.items) ? s.items.filter(i => i.custom) : []);
+    const have = new Set(START.map(x => x.title.toLowerCase()));
+    custom = (saved || []).filter(i => i && i.title && !have.has(String(i.title).toLowerCase()))
+      .map(i => ({ id:i.id, title:i.title, custom:true }));
   } catch(e){}
-  return { items: START.map(x => ({...x})), seen: START.map(x => x.id) };
+  return { custom, items: [...START.map(x => ({...x})), ...custom] };
 }
 let state = load();
-function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify({ custom: state.items.filter(i => i.custom) })); } catch(e){} }
+const fmtDate = d => { const [y,m,dd] = d.split('-').map(Number);
+  return new Date(y, m-1, dd).toLocaleDateString(undefined, { weekday:'short', month:'short', day:'numeric' }); };
 
 function row(it, justId){
-  const note = it.note ? `<em>${esc(it.note)}</em>` : '';
+  const bits = [it.note, it.date ? 'Watched ' + fmtDate(it.date) : ''].filter(Boolean);
+  const note = bits.length ? `<em>${esc(bits.join(' · '))}</em>` : '';
   const rm = it.custom ? `<button class="rm" data-rm="${it.id}" aria-label="Remove ${esc(it.title)}">✕</button>` : '';
   return `<li class="${it.done?'done':''}${it.id===justId?' just':''}">
-    <input class="chk" type="checkbox" data-id="${it.id}" ${it.done?'checked':''} aria-label="Watched: ${esc(it.title)}">
+    <span class="mark" aria-hidden="true">${it.done?'🎄':''}</span>
     <span class="t">${esc(it.title)}${note}</span>${rm}</li>`;
 }
 function render(justId){
@@ -253,11 +255,6 @@ function render(justId){
   $('bar').firstElementChild.style.width = pct + '%'; $('bar').setAttribute('aria-valuenow', pct);
 }
 
-document.addEventListener('change', e => {
-  const id = e.target.dataset && e.target.dataset.id; if (!id) return;
-  const it = state.items.find(i => i.id === id); if (!it) return;
-  it.done = e.target.checked; save(); render(id);
-});
 document.addEventListener('click', e => {
   const id = e.target.dataset && e.target.dataset.rm; if (!id) return;
   state.items = state.items.filter(i => i.id !== id); save(); render();
@@ -276,8 +273,8 @@ $('pick').addEventListener('click', () => {
     : `<strong>Nothing left — you did it! 🎅</strong>`;
 });
 $('reset').addEventListener('click', () => {
-  if (confirm('Reset to the starting list? Your checkmarks and additions will be cleared.')) {
-    state = { items: START.map(x => ({...x})), seen: START.map(x => x.id) }; save(); render(); $('tonight').style.display = 'none';
+  if (confirm('Clear the movies you added on this device?')) {
+    state = { items: START.map(x => ({...x})) }; save(); render(); $('tonight').style.display = 'none';
   }
 });
 
